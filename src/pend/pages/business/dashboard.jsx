@@ -5,6 +5,7 @@ import dots from "../../assets/img/dots.png";
 import pink from "../../assets/img/pink.png";
 import emzor from "../../assets/img/emzor.png";
 import bg from "../../assets/img/Mask.png";
+import health from "../../assets/img/health.png";
 // import { useNavigate } from "react-router-dom";
 import "../../assets/css/nucleo-icons.css";
 import "../../assets/css/nucleo-svg.css";
@@ -103,7 +104,10 @@ function Dashboard() {
 
   const myStyle = {
     backgroundImage: `url(${bg})`,
-    backgroundPosition: "cover",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    height: "200px",
+    position: "relative",
   };
 
   // const navigate = useNavigate();
@@ -659,10 +663,27 @@ function Dashboard() {
               </div>
 
               <div className="card mt-4">
-                <div className="row p-3">
+                <div className="row p-5 gx-5">
                   <div className="col-lg-5 ">
                     <div>
                       <h1 className="fs-3 fw-normal text-black">Top Partner</h1>
+                    </div>
+
+                    <div className="input-group">
+                      <input
+                        className="form-control border-end-0 border rounded-pill"
+                        type="text"
+                        value="search"
+                        id="example-search-input"
+                      />
+                      <span className="input-group-append">
+                        <button
+                          className="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3"
+                          type="button"
+                        >
+                          <i className="fa fa-search"></i>
+                        </button>
+                      </span>
                     </div>
 
                     <div class="table-responsive p-3">
@@ -701,10 +722,9 @@ function Dashboard() {
                     </div>
                   </div>
 
-                  <div className="col-lg-5">
-                    <div>
-                      <div style={myStyle}>aggag</div>
-                      <p>"The key to healthy life is a healthy mind"</p>
+                  <div className="col-lg-5  ">
+                    <div className=" mt-7">
+                      <img src={health} alt="" />
                     </div>
                   </div>
                 </div>
