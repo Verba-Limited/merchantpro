@@ -5,6 +5,9 @@ import { Outlet, useLocation } from "react-router-dom";
 
 export default function GlobalLayout() {
   const location = useLocation();
+  const customStyle = {
+    overflowX: "hidden",
+  };
 
   const pathToPageName = {
     "/dashboard": "Hey Jane, Good afternoon",
@@ -21,15 +24,18 @@ export default function GlobalLayout() {
   const shouldRenderTopbar = !pathsWithoutTopbar.includes(location.pathname);
 
   return (
-    <div className="d-flex">
-      <Sidebar />
-      <div className="flex-grow-1" style={{ marginLeft: "18%" }}>
-        {shouldRenderTopbar && <Topbar pageName={currentPageName} />}
-        <main className="p-4">
-          <Outlet />
-        </main>
+    <>
+      <div className="">
+        <Sidebar />
+        <div style={{ marginLeft: "16%" }}>
+          {shouldRenderTopbar && (
+            <Topbar pageName={currentPageName} className="w-full" />
+          )}
+          <main className=" px-6 px-md-0" style={customStyle}>
+            <Outlet />
+          </main>
+        </div>
       </div>
-      5
-    </div>
+    </>
   );
 }

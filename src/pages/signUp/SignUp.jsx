@@ -9,7 +9,7 @@ import "../../assets/css/argon-dashboard.css";
 import { Link, useNavigate } from "react-router-dom";
 
 import businessbackground from "../../assets/img/businessman.png";
-import mplogo from "../../assets/img/mplogo.png";
+import mplogo from "../../assets/img/icons/flags/aaa.png";
 import frameservices from "../../assets/img/frameservices.png";
 
 export default function SignUp() {

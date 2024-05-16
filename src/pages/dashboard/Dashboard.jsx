@@ -5,10 +5,12 @@ import pink from "../../assets/img/pink.png";
 import emzor from "../../assets/img/emzor.png";
 import bg from "../../assets/img/Mask.png";
 import health from "../../assets/img/health.png";
+import icon from "../../assets/img/images/Icon.png";
 // import "bootstrap/dist/css/bootstrap.css";
 
 import { Table, Pagination } from "react-bootstrap";
 import BarChart from "../../components/layout/BarChart";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const orders = [
@@ -97,6 +99,16 @@ export default function Dashboard() {
     <div>
       <div class="container-fluid py-4">
         <div class="row">
+          <div className="d-flex justify-content-end mb-4">
+            <Link to="/settings">
+              <button className="bg-[#f28f1e] text-white px-7 rounded-xl py-2 flex space-x-5 items-center">
+                <div className="rounded-full bg-[#f5a445] p-3 ">
+                  <img src={icon} alt="" />
+                </div>
+                <span> Complete your KYC</span>
+              </button>
+            </Link>
+          </div>
           <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
               <div class="card-body p-3">
@@ -266,24 +278,6 @@ export default function Dashboard() {
                           </span>
                         </td>
                         <td>
-                          {/* <Dropdown as={ButtonGroup}>
-                              <Dropdown.Toggle
-                                split
-                                variant="secondary"
-                                id="dropdown-split-basic"
-                              />
-                              <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">
-                                  Action
-                                </Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">
-                                  Another action
-                                </Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">
-                                  Something else
-                                </Dropdown.Item>
-                              </Dropdown.Menu>
-                            </Dropdown> */}
                           <img src={dots} alt="" />
                         </td>
                       </tr>
