@@ -8,16 +8,16 @@ export default function Wallet() {
       icon: Assets.arrowRight,
       title: " Payment to Emzor",
       date: " Today, 26th Sept at 3:am",
-      price: "N50,000,00",
+      price: "50,000,00",
       img: Assets.approve,
       status: "Success",
     },
     {
       id: 2,
       icon: Assets.arrowLeft,
-      title: " Payment to Emzor",
+      title: " Withdrawal",
       date: " Today, 26th Sept at 3:am",
-      price: "N50,000,00",
+      price: "50,000,00",
       img: Assets.approve,
       status: "Success",
     },
@@ -26,18 +26,18 @@ export default function Wallet() {
       icon: Assets.arrowRight,
       title: " Payment to Emzor",
       date: " Today, 26th Sept at 3:am",
-      price: "N50,000,00",
+      price: "50,000,00",
       img: Assets.decline,
-      status: "Success",
+      status: "Decline",
     },
     {
       id: 4,
       icon: Assets.arrowRight,
       title: " Payment to Emzor",
       date: " Today, 26th Sept at 3:am",
-      price: "N50,000,00",
+      price: "50,000,00",
       img: Assets.pending,
-      status: "Success",
+      status: "Pending",
     },
   ];
 
@@ -121,7 +121,13 @@ export default function Wallet() {
                     />
                   </button>
                   <div>
-                    <h1 className="text-[#234A75] text-[20px] font-medium">
+                    <h1
+                      className={`text-[20px] font-medium ${
+                        items.title === "Withdrawal"
+                          ? "text-[#4d9a1d]"
+                          : "text-[#234A75]"
+                      }`}
+                    >
                       {items.title}
                     </h1>
                     <p className="text-[#353F4D] font-light text-[16px]">
@@ -130,7 +136,9 @@ export default function Wallet() {
                   </div>
 
                   <div>
-                    <p className="font-medium text-[#234A75]">{items.price}</p>
+                    <p className="font-medium text-[#234A75]">
+                      ₦{items.price.toLocaleString()}
+                    </p>
                   </div>
 
                   <div className="flex flex-col items-center">
