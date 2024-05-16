@@ -53,7 +53,9 @@ export default function Settings() {
               <form>
                 <div className="flex justify-evenly space-x-5">
                   <div className="mb-3 w-1/2 row">
-                    <label className="text-body">TIN</label>
+                    <label className=" text-[17px] font-normal text-black">
+                      TIN
+                    </label>
                     <input
                       type="text"
                       className="form-control form-control-lg"
@@ -63,7 +65,9 @@ export default function Settings() {
                     />
                   </div>
                   <div className="mb-3 w-1/2 row">
-                    <label className="text-body">RC Number</label>
+                    <label className=" text-[17px] font-normal text-black">
+                      RC Number
+                    </label>
                     <input
                       type="text"
                       className="form-control form-control-lg"
@@ -74,14 +78,72 @@ export default function Settings() {
                   </div>
                 </div>
                 <div className="mb-3 w-full row">
-                  <label className="text-body">TIN</label>
+                  <label className=" text-[17px] font-normal text-black">
+                    Business Email
+                  </label>
                   <input
-                    type="text"
+                    type="email"
                     className="form-control form-control-lg"
-                    placeholder="Enter"
+                    placeholder="Email Address"
                     aria-label="TIN"
                     required
                   />
+                </div>
+                <div className="mb-3 w-full row">
+                  <label className=" text-[17px] font-normal text-black">
+                    Business Phone Number
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control form-control-lg"
+                    placeholder="Phone Number"
+                    aria-label="TIN"
+                    required
+                  />
+                </div>
+                <div className="flex justify-evenly space-x-5">
+                  <div className="mb-3 w-1/2 row">
+                    <label className=" text-[17px] font-normal text-black">
+                      Country
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control form-control-lg"
+                      placeholder="Enter"
+                      aria-label="TIN"
+                      required
+                    />
+                  </div>
+                  <div className="mb-3 w-1/2 row">
+                    <label className=" text-[17px] font-normal text-black">
+                      State
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control form-control-lg"
+                      placeholder="Enter"
+                      aria-label="RC Number"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="mb-3 w-full row">
+                  <label className="text-[17px] font-normal text-black">
+                    Local Government
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control form-control-lg"
+                    placeholder="Phone Number"
+                    aria-label="TIN"
+                    required
+                  />
+                </div>
+
+                <div className="flex justify-end">
+                  <button className="px-5 py-3 bg-[#4D9A1D] text-white rounded-xl">
+                    Next
+                  </button>
                 </div>
               </form>
             </div>
