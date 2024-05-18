@@ -26,7 +26,7 @@ export default function Settings() {
 
   const handleNext = () => {
     if (Object.values(formData).every((value) => value.trim() !== "")) {
-      setFormStep(2);
+      setFormStep((prevStep) => prevStep + 1);
     } else {
       toast.warn("Please fill out all fields!", {
         position: "top-center",
@@ -42,6 +42,10 @@ export default function Settings() {
 
       console.log("Please fill out all fields");
     }
+  };
+
+  const handlePrev = () => {
+    setFormStep((prevStep) => prevStep - 1);
   };
 
   const [activeTab, setActiveTab] = useState("profile");
@@ -321,6 +325,7 @@ export default function Settings() {
 
                   <div className="mb-20 flex justify-between items-center">
                     <button
+                      onClick={handlePrev}
                       type="button"
                       className="px-5 py-3 border-2 border-[#81919B] text-[#81919B] rounded-xl"
                     >
@@ -341,6 +346,13 @@ export default function Settings() {
                     </button>
                   </div>
                 </form>
+              )}
+
+              {formStep === 3 && (
+                <div>
+                  <h1>this is the third</h1>
+                  <button onClick={handlePrev}>pre</button>
+                </div>
               )}
             </div>
           </div>
