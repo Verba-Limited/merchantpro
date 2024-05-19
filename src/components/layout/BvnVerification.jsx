@@ -10,7 +10,7 @@ export default function BvnVerification({
 }) {
   return (
     <div className=" bg-white  border rounded-lg">
-      <div className="flex justify-between items-center bg-[#f3f8fb] py-3 p-2">
+      <div className="flex justify-between items-center bg-[#f3f8fb] py-3 p-3">
         <div className="flex items-center space-x-3">
           <span className="cursor-pointer">
             <img src={Assets.drop} alt="" />
@@ -36,7 +36,7 @@ export default function BvnVerification({
               id="bvn"
               value={bvn}
               onChange={(e) => setBvn(e.target.value)}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md outline-none focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter BVN"
               disabled={isVerified}
             />

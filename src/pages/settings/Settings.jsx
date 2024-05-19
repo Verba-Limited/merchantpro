@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Assets from "../../constants/Assets";
 import BvnVerification from "../../components/layout/BvnVerification";
 import DisplayVerified from "../../components/DisplayVerified";
+import DocsUpload from "../../components/layout/DocsUpload";
 
 export default function Settings() {
   const [formData, setFormData] = useState({
@@ -546,9 +547,7 @@ export default function Settings() {
         {activeTab === "kyc" && (
           <>
             <div className="flex justify-end">
-              <p className="font-bold text-2xl text-[#234A75]">
-                Step {formStep} of 1
-              </p>
+              <p className="font-bold text-2xl text-[#234A75]">Step 1 of 1</p>
             </div>
             <div className="space-y-4 pt-4">
               <h1 className="text-[24px] text-[#353F4D] font-normal">
@@ -563,6 +562,14 @@ export default function Settings() {
                   handleVerification={handleVerification}
                 />
                 {/* <DisplayVerified isVerified={isVerified} /> */}
+              </div>
+              <div className="pt-7 mb-6">
+                <h1 className="text-[24px] text-[#353F4D] font-normal">
+                  Documents Upload
+                </h1>
+                <div className="mt-3">
+                  <DocsUpload />
+                </div>
               </div>
             </div>
           </>

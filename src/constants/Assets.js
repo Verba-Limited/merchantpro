@@ -10,6 +10,8 @@ import pending from "../assets/img/pending.svg";
 import arrow from "../assets/img/chevron-right.png";
 import uploadIcon from "../assets/img/upload.svg";
 import drop from "../assets/img/drop.svg";
+import download from "../assets/img/download.png";
+import sign from "../assets/img/Vector.png";
 const Assets = {
   plus,
   withdraw,
@@ -23,6 +25,8 @@ const Assets = {
   pending,
   uploadIcon,
   drop,
+  download,
+  sign,
 };
 
 export default Assets;
