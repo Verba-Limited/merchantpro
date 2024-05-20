@@ -4,8 +4,9 @@ import { ToastContainer, Zoom, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Assets from "../../constants/Assets";
 import BvnVerification from "../../components/layout/BvnVerification";
-import DisplayVerified from "../../components/DisplayVerified";
 import DocsUpload from "../../components/layout/DocsUpload";
+import EmailCode from "../../components/layout/EmailCode";
+import AddNewPassword from "../../components/layout/AddNewPassword";
 
 export default function Settings() {
   const [formData, setFormData] = useState({
@@ -19,12 +20,13 @@ export default function Settings() {
   });
 
   const [file, setFile] = useState(null);
-
-  // verificaation
-
+  const [formStep, setFormStep] = useState(1);
+  const [activeTab, setActiveTab] = useState("profile");
   const [bvn, setBvn] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Sole Proprietorship");
+  const [codeConfirmed, setCodeConfirmed] = useState(false);
 
   const handleVerification = () => {
     setIsVerifying(true);
@@ -56,7 +58,6 @@ export default function Settings() {
       });
     }
   };
-  const [formStep, setFormStep] = useState(1);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,13 +91,9 @@ export default function Settings() {
     setFormStep((prevStep) => prevStep - 1);
   };
 
-  const [activeTab, setActiveTab] = useState("profile");
-
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-
-  const [selectedOption, setSelectedOption] = useState("Sole Proprietorship");
 
   const handleChanges = (event) => {
     setSelectedOption(event.target.value);
@@ -104,6 +101,9 @@ export default function Settings() {
 
   const handleNextKyc = () => {
     setActiveTab("kyc");
+  };
+  const handleConfirmed = () => {
+    setCodeConfirmed(true);
   };
 
   return (
@@ -404,12 +404,7 @@ export default function Settings() {
                       <div className="">
                         <div className="flex space-x-10 items-center">
                           <div className="flex flex-col items-center md:space-y-3">
-                            <img
-                              src={Assets.uploadIcon}
-                              alt="uplaod icon"
-                              //   width={38}
-                              //   height={38}
-                            />
+                            <img src={Assets.uploadIcon} alt="uplaod icon" />
 
                             <button
                               onClick={handleUpload}
@@ -570,6 +565,20 @@ export default function Settings() {
                 <div className="mt-3">
                   <DocsUpload />
                 </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {activeTab === "updatePassword" && (
+          <>
+            <div>
+              <div className="pt-5">
+                {!codeConfirmed ? (
+                  <EmailCode onCodeConfirm={handleConfirmed} />
+                ) : (
+                  <AddNewPassword />
+                )}
               </div>
             </div>
           </>

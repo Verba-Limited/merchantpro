@@ -9,9 +9,9 @@ export default function BvnVerification({
   handleVerification,
 }) {
   return (
-    <div className=" bg-white  border rounded-lg">
-      <div className="flex justify-between items-center bg-[#f3f8fb] py-3 p-3">
-        <div className="flex items-center space-x-3">
+    <div className=" bg-white   border rounded-lg">
+      <div className="flex sm:justify-between lg:space-x-6 items-center bg-[#f3f8fb] py-3 p-3 w-full max-w-screen-lg">
+        <div className="flex items-center space-x-3 ">
           <span className="cursor-pointer">
             <img src={Assets.drop} alt="" />
           </span>

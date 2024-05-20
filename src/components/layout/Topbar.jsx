@@ -25,7 +25,7 @@ export default function Topbar({ pageName, showHomeLink }) {
   };
 
   return (
-    <div className="py-4  md:pt-8 sticky z-30 top-0  md:px-0 md:bg-[#FFF] h-full md:flex flex-col md:justify-between md:flex-row items-center w-full bg-50-500 md:border-b  md:gap-5 ">
+    <div className="py-4  md:pt-8 sticky z-30  inset-0 md:px-0 md:bg-[#FFF] h-full md:flex flex-col md:justify-between md:flex-row items-center w-full bg-50-500 md:border-b  md:gap-5 ">
       {location.pathname !== "/notification" && (
         <div
           className={`d-flex ${

@@ -12,6 +12,10 @@ import uploadIcon from "../assets/img/upload.svg";
 import drop from "../assets/img/drop.svg";
 import download from "../assets/img/download.png";
 import sign from "../assets/img/Vector.png";
+import reset from "../assets/img/reset.png";
+import email from "../assets/img/email2.png";
+import eyeSlash from "../assets/img/eye=off.png";
+import reseticon from "../assets/img/resetSuccess.png";
 const Assets = {
   plus,
   withdraw,
@@ -27,6 +31,10 @@ const Assets = {
   drop,
   download,
   sign,
+  email,
+  reset,
+  eyeSlash,
+  reseticon,
 };
 
 export default Assets;
