@@ -261,23 +261,25 @@ export default function Dashboard() {
                   </tbody>
                 </Table>
               </div>
-              <div className="d-flex justify-content-end">
-                <Pagination>
-                  <Pagination.First />
-                  <Pagination.Prev />
-                  <Pagination.Item active>{1}</Pagination.Item>
-                  <Pagination.Item>{2}</Pagination.Item>
-                  <Pagination.Item>{3}</Pagination.Item>
-                  <Pagination.Item>{4}</Pagination.Item>
-                  <Pagination.Item>{5}</Pagination.Item>
-                  <Pagination.Next />
-                  <Pagination.Last />
-                </Pagination>
+              <div className="flex justify-end items-center py-2">
+                <button className="text-gray-500 hover:text-gray-700">
+                  Previous
+                </button>
+                <div className="flex space-x-1">
+                  {[1, 2, 3, 4, 5].map((page) => (
+                    <button key={page} className="px-3 py-1 border rounded">
+                      {page}
+                    </button>
+                  ))}
+                </div>
+                <button className="text-gray-500 hover:text-gray-700">
+                  Next
+                </button>
               </div>
             </div>
 
             <div className="card mt-4">
-              <div className="row p-5 gx-5">
+              <div className="flex space-x-28 p-5 gx-5">
                 <div className="col-lg-5 ">
                   <div>
                     <h1 className="fs-3 fw-normal text-black">Top Partner</h1>
@@ -317,15 +319,24 @@ export default function Dashboard() {
                       </tbody>
                     </Table>
                     <div className="mt-4">
-                      <Pagination>
-                        <Pagination.First />
-                        <Pagination.Prev />
-                        <Pagination.Item active>{1}</Pagination.Item>
-                        <Pagination.Item>{2}</Pagination.Item>
-                        <Pagination.Item>{3}</Pagination.Item>
-                        <Pagination.Next />
-                        <Pagination.Last />
-                      </Pagination>
+                      <div className="flex ">
+                        <button className="text-gray-500 hover:text-gray-700">
+                          Previous
+                        </button>
+                        <div className="flex space-x-1">
+                          {[1, 2, 3, 4, 5].map((page) => (
+                            <button
+                              key={page}
+                              className="px-3 py-1 border rounded"
+                            >
+                              {page}
+                            </button>
+                          ))}
+                        </div>
+                        <button className="text-gray-500 hover:text-gray-700">
+                          Next
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

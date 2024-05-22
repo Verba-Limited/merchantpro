@@ -107,7 +107,7 @@ export default function Orders() {
     backgroundImage: `url(${Assets.ads})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
-    height: "200px",
+    height: "254px",
     position: "relative",
   };
 
@@ -293,14 +293,19 @@ export default function Orders() {
         </div>
       </div>
 
-      <div>
-        <div style={myStyle}>
-          <div className="relative z-10 flex flex-col tems-center justify-center h-full">
-            <h1 className="text-white text-[32px]">This is for AD</h1>
-            <p className="text-center flex">
-              Bring your import and export sales more simple with unified
+      <div style={myStyle} className="mb-4">
+        <div className="relative z-10  h-full">
+          <div className="flex flex-col items-center justify-center h-[35vh] text-white space-y-4">
+            <h1 className="text-white text-[32px] font-medium">
+              This is for AD
+            </h1>
+            <p className="text-center flex text-[24px] font-normal">
+              Bring your import and export sales more simple with unified <br />
               Digital contract system
             </p>
+            <button className="bg-[#4d9a1d] px-6 py-2 rounded-lg font-medium text-[24px]">
+              Click Here
+            </button>
           </div>
         </div>
       </div>
