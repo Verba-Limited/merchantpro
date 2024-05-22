@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/dist";
 import { ToastContainer, Zoom, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Assets from "../../constants/Assets";
 import BvnVerification from "../../components/layout/BvnVerification";
-import DisplayVerified from "../../components/DisplayVerified";
 import DocsUpload from "../../components/layout/DocsUpload";
+import EmailCode from "../../components/layout/EmailCode";
+import AddNewPassword from "../../components/layout/AddNewPassword";
+import Select from "react-select";
+import axios from "axios";
 
 export default function Settings() {
+  const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
+      )
+      .then((response) => {
+        setCountries(response.data.countries);
+        setSelectedCountry(response.data.userSelectValue);
+      })
+      .catch((error) => {
+        console.error("Error fetching countries:", error);
+      });
+  }, []);
+
   const [formData, setFormData] = useState({
     tin: "",
     rcNumber: "",
@@ -19,12 +39,13 @@ export default function Settings() {
   });
 
   const [file, setFile] = useState(null);
-
-  // verificaation
-
+  const [formStep, setFormStep] = useState(1);
+  const [activeTab, setActiveTab] = useState("profile");
   const [bvn, setBvn] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Sole Proprietorship");
+  const [codeConfirmed, setCodeConfirmed] = useState(false);
 
   const handleVerification = () => {
     setIsVerifying(true);
@@ -56,7 +77,6 @@ export default function Settings() {
       });
     }
   };
-  const [formStep, setFormStep] = useState(1);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,13 +110,9 @@ export default function Settings() {
     setFormStep((prevStep) => prevStep - 1);
   };
 
-  const [activeTab, setActiveTab] = useState("profile");
-
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-
-  const [selectedOption, setSelectedOption] = useState("Sole Proprietorship");
 
   const handleChanges = (event) => {
     setSelectedOption(event.target.value);
@@ -104,6 +120,9 @@ export default function Settings() {
 
   const handleNextKyc = () => {
     setActiveTab("kyc");
+  };
+  const handleConfirmed = () => {
+    setCodeConfirmed(true);
   };
 
   return (
@@ -220,15 +239,14 @@ export default function Settings() {
                       <label className=" text-[17px] font-normal text-black">
                         Country
                       </label>
-                      <input
-                        type="text"
-                        className="form-control form-control-lg"
-                        placeholder="Enter"
-                        aria-label="TIN"
-                        name="country"
-                        value={formData.country}
-                        onChange={handleChange}
-                        required
+
+                      <Select
+                        options={countries}
+                        className="form-control form-control-lg outline-none"
+                        value={selectedCountry}
+                        onChange={(selectedOption) =>
+                          setSelectedCountry(selectedOption)
+                        }
                       />
                     </div>
                     <div className="mb-3 w-1/2 row">
@@ -404,12 +422,7 @@ export default function Settings() {
                       <div className="">
                         <div className="flex space-x-10 items-center">
                           <div className="flex flex-col items-center md:space-y-3">
-                            <img
-                              src={Assets.uploadIcon}
-                              alt="uplaod icon"
-                              //   width={38}
-                              //   height={38}
-                            />
+                            <img src={Assets.uploadIcon} alt="uplaod icon" />
 
                             <button
                               onClick={handleUpload}
@@ -570,6 +583,20 @@ export default function Settings() {
                 <div className="mt-3">
                   <DocsUpload />
                 </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {activeTab === "updatePassword" && (
+          <>
+            <div>
+              <div className="pt-5">
+                {!codeConfirmed ? (
+                  <EmailCode onCodeConfirm={handleConfirmed} />
+                ) : (
+                  <AddNewPassword />
+                )}
               </div>
             </div>
           </>

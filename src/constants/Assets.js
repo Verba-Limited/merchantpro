@@ -12,6 +12,14 @@ import uploadIcon from "../assets/img/upload.svg";
 import drop from "../assets/img/drop.svg";
 import download from "../assets/img/download.png";
 import sign from "../assets/img/Vector.png";
+import reset from "../assets/img/reset.png";
+import email from "../assets/img/email2.png";
+import eyeSlash from "../assets/img/eye=off.png";
+import reseticon from "../assets/img/resetSuccess.png";
+import cart from "../assets/img/cart.svg";
+import lokmal from "../assets/img/lokmal2.svg";
+import dots from "../assets/img/dots.png";
+import ads from "../assets/img/Ads.png";
 const Assets = {
   plus,
   withdraw,
@@ -27,6 +35,14 @@ const Assets = {
   drop,
   download,
   sign,
+  email,
+  reset,
+  eyeSlash,
+  reseticon,
+  cart,
+  lokmal,
+  dots,
+  ads,
 };
 
 export default Assets;

@@ -25,7 +25,7 @@ export default function Topbar({ pageName, showHomeLink }) {
   };
 
   return (
-    <div className="py-4  md:pt-8 sticky z-30 top-0  md:px-0 md:bg-[#FFF] h-full md:flex flex-col md:justify-between md:flex-row items-center w-full bg-50-500 md:border-b  md:gap-5 ">
+    <div className="py-4  md:pt-8 sticky z-30  inset-0 md:px-0 md:bg-[#FFF] h-full md:flex flex-col md:justify-between md:flex-row items-center w-full bg-50-500 md:border-b  md:gap-5 ">
       {location.pathname !== "/notification" && (
         <div
           className={`d-flex ${
@@ -33,7 +33,7 @@ export default function Topbar({ pageName, showHomeLink }) {
           } justify-content-between pr-3`}
         >
           <div className="d-flex align-items-center w-100">
-            <h1 className="d-none d-md-block fw-bold fs-6 text-dark pl-3 w-100">
+            <h1 className=" text-[#234A75] text-[24px] font-bold  text-dark pl-3 w-100">
               {pageName}
             </h1>
 

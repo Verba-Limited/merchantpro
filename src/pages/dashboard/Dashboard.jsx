@@ -119,12 +119,6 @@ export default function Dashboard() {
                         Today's Order
                       </p>
                       <h5 class="font-weight-bolder">N53,000</h5>
-                      {/* <p class="mb-0">
-                        <span class="text-success text-sm font-weight-bolder">
-                          +55%
-                        </span>
-                        since yesterday
-                      </p> */}
                     </div>
                   </div>
                   <div class="col-4 text-end">
@@ -149,12 +143,6 @@ export default function Dashboard() {
                         Today's Users
                       </p>
                       <h5 class="font-weight-bolder">2,300</h5>
-                      {/* <p class="mb-0">
-                        <span class="text-success text-sm font-weight-bolder">
-                          +3%
-                        </span>
-                        since last week
-                      </p> */}
                     </div>
                   </div>
                   <div class="col-4 text-end">
@@ -179,12 +167,6 @@ export default function Dashboard() {
                         Partners
                       </p>
                       <h5 class="font-weight-bolder">+3,462</h5>
-                      {/* <p class="mb-0">
-                        <span class="text-danger text-sm font-weight-bolder">
-                          -2%
-                        </span>
-                        since last quarter
-                      </p> */}
                     </div>
                   </div>
                   <div class="col-4 text-end">
@@ -209,12 +191,6 @@ export default function Dashboard() {
                         Sales
                       </p>
                       <h5 class="font-weight-bolder">$103,430</h5>
-                      {/* <p class="mb-0">
-                        <span class="text-success text-sm font-weight-bolder">
-                          +5%
-                        </span>{" "}
-                        than last month
-                      </p> */}
                     </div>
                   </div>
                   <div class="col-4 text-end">
@@ -285,44 +261,29 @@ export default function Dashboard() {
                   </tbody>
                 </Table>
               </div>
-              <div className="d-flex justify-content-end">
-                <Pagination>
-                  <Pagination.First />
-                  <Pagination.Prev />
-                  <Pagination.Item active>{1}</Pagination.Item>
-                  <Pagination.Item>{2}</Pagination.Item>
-                  <Pagination.Item>{3}</Pagination.Item>
-                  <Pagination.Item>{4}</Pagination.Item>
-                  <Pagination.Item>{5}</Pagination.Item>
-                  <Pagination.Next />
-                  <Pagination.Last />
-                </Pagination>
+              <div className="flex justify-end items-center py-2">
+                <button className="text-gray-500 hover:text-gray-700">
+                  Previous
+                </button>
+                <div className="flex space-x-1">
+                  {[1, 2, 3, 4, 5].map((page) => (
+                    <button key={page} className="px-3 py-1 border rounded">
+                      {page}
+                    </button>
+                  ))}
+                </div>
+                <button className="text-gray-500 hover:text-gray-700">
+                  Next
+                </button>
               </div>
             </div>
 
             <div className="card mt-4">
-              <div className="row p-5 gx-5">
+              <div className="flex space-x-28 p-5 gx-5">
                 <div className="col-lg-5 ">
                   <div>
                     <h1 className="fs-3 fw-normal text-black">Top Partner</h1>
                   </div>
-
-                  {/* <div className="input-group">
-                    <input
-                      className="form-control border-end-0 border rounded-pill"
-                      type="text"
-                      value="search"
-                      id="example-search-input"
-                    />
-                    <span className="input-group-append">
-                      <button
-                        className="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3"
-                        type="button"
-                      >
-                        <i className="fa fa-search"></i>
-                      </button>
-                    </span>
-                  </div> */}
 
                   <div class="table-responsive">
                     <Table responsive>
@@ -358,15 +319,24 @@ export default function Dashboard() {
                       </tbody>
                     </Table>
                     <div className="mt-4">
-                      <Pagination>
-                        <Pagination.First />
-                        <Pagination.Prev />
-                        <Pagination.Item active>{1}</Pagination.Item>
-                        <Pagination.Item>{2}</Pagination.Item>
-                        <Pagination.Item>{3}</Pagination.Item>
-                        <Pagination.Next />
-                        <Pagination.Last />
-                      </Pagination>
+                      <div className="flex ">
+                        <button className="text-gray-500 hover:text-gray-700">
+                          Previous
+                        </button>
+                        <div className="flex space-x-1">
+                          {[1, 2, 3, 4, 5].map((page) => (
+                            <button
+                              key={page}
+                              className="px-3 py-1 border rounded"
+                            >
+                              {page}
+                            </button>
+                          ))}
+                        </div>
+                        <button className="text-gray-500 hover:text-gray-700">
+                          Next
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -396,22 +366,6 @@ export default function Dashboard() {
                   </a>
                 </div>
               </div>
-              {/* <div class="col-lg-6">
-                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                      <li class="nav-item">
-                        <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank" rel="noreferrer">Creative Tim</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank" rel="noreferrer">About Us</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank" rel="noreferrer">Blog</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank" rel="noreferrer">License</a>
-                      </li>
-                    </ul>
-                  </div> */}
             </div>
           </div>
         </footer>
