@@ -33,7 +33,7 @@ export default function Topbar({ pageName, showHomeLink }) {
           } justify-content-between pr-3`}
         >
           <div className="d-flex align-items-center w-100">
-            <h1 className="d-none d-md-block fw-bold fs-6 text-dark pl-3 w-100">
+            <h1 className=" text-[#234A75] text-[24px] font-bold  text-dark pl-3 w-100">
               {pageName}
             </h1>
 
