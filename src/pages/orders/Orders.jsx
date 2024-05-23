@@ -293,7 +293,7 @@ export default function Orders() {
         </div>
       </div>
 
-      <div style={myStyle} className="mb-4">
+      <div style={myStyle} className="mb-6 mt-5">
         <div className="relative z-10  h-full">
           <div className="flex flex-col items-center justify-center h-[35vh] text-white space-y-4">
             <h1 className="text-white text-[32px] font-medium">
