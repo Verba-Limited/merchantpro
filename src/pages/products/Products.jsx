@@ -1,20 +1,28 @@
 import React, { useState } from "react";
-import Assets from "../../constants/Assets";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { TextField } from "@mui/material";
+import {
+  TextField,
+  Button,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
+import Assets from "../../constants/Assets";
+import ProductItems from "../../components/Ui/ProductItems";
 
 export default function Products() {
-  const [selectedStatus, setSelectedStatus] = useState("Malaria");
+  const [selectedDate, setSelectedDate] = React.useState(null);
+  const [category, setCategory] = React.useState("");
 
-  const statuses = [
-    { value: "malaria", label: "malaria" },
-    { value: "Typhoid", label: "Typhoid" },
-    { value: "pending", label: "Pending" },
-    { value: "cancelled", label: "Cancelled" },
-  ];
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
 
   const myStyle = {
     backgroundImage: `url(${Assets.productbg})`,
@@ -56,39 +64,57 @@ export default function Products() {
         </div>
       </div>
 
-      <div className="flex">
-        <div className="flex flex-col">
-          <label className=" text-gray-700">Product Category</label>
-          <select
-            className="min-w-[150px] md:min-w-[200px] lgimport { TextField } from '@mui/material';:min-w-[250px] border border-gray-300 rounded p-2"
-            value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value)}
-          >
-            {statuses.map((status) => (
-              <option key={status.value} value={status.value}>
-                {status.label}
-              </option>
-            ))}
-          </select>
+      <div className="flex justify-between items-center">
+        <div className="flex items-center space-x-16 p-4">
+          <FormControl variant="outlined" className="w-48">
+            <InputLabel>Product Category</InputLabel>
+            <Select
+              value={category}
+              onChange={handleCategoryChange}
+              label="Product Category"
+            >
+              <MenuItem value="Malaria">Malaria</MenuItem>
+              <MenuItem value="Covid-19">Covid-19</MenuItem>
+              <MenuItem value="Flu">Flu</MenuItem>
+            </Select>
+          </FormControl>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="Created Date"
+              value={selectedDate}
+              onChange={handleDateChange}
+              renderInput={(params) => (
+                <TextField {...params} className="w-48" variant="outlined" />
+              )}
+            />
+          </LocalizationProvider>
+          <button className="flex items-center px-4 h-12 space-x-2 bg-[#234a75] text-white rounded">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="white"
+              className="w-15 h-11"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+            <p>search</p>
+          </button>
         </div>
 
         <div>
-          <div className="flex flex-col">
-            <label className=" text-gray-700">Created Date</label>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                label="Select date"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="outlined"
-                    sx={{ height: 20, "& .MuiInputBase-root": { height: 20 } }}
-                  />
-                )}
-              />
-            </LocalizationProvider>
-          </div>
+          <button className="bg-[#4d9a1d] px-5 py-2 text-white rounded-lg font-medium text-[24px]">
+            Add product
+          </button>
         </div>
+      </div>
+      <div>
+        <ProductItems />
       </div>
     </div>
   );
