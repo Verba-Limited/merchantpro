@@ -24,6 +24,9 @@ import productbg from "../assets/img/productbg.png";
 import emzorlogo from "../assets/img/emzorlogo.png";
 import mail from "../assets/img/Union.png";
 import enterprise from "../assets/img/Enterprise.png";
+import heart from "../assets/img/Heart.png";
+import piriton from "../assets/img/piriton.png";
+import naria from "../assets/img/naria.png";
 const Assets = {
   plus,
   withdraw,
@@ -51,6 +54,9 @@ const Assets = {
   emzorlogo,
   enterprise,
   mail,
+  heart,
+  piriton,
+  naria,
 };
 
 export default Assets;
