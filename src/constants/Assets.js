@@ -20,6 +20,10 @@ import cart from "../assets/img/cart.svg";
 import lokmal from "../assets/img/lokmal2.svg";
 import dots from "../assets/img/dots.png";
 import ads from "../assets/img/Ads.png";
+import productbg from "../assets/img/productbg.png";
+import emzorlogo from "../assets/img/emzorlogo.png";
+import mail from "../assets/img/Union.png";
+import enterprise from "../assets/img/Enterprise.png";
 const Assets = {
   plus,
   withdraw,
@@ -43,6 +47,10 @@ const Assets = {
   lokmal,
   dots,
   ads,
+  productbg,
+  emzorlogo,
+  enterprise,
+  mail,
 };
 
 export default Assets;
