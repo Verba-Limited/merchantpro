@@ -13,6 +13,7 @@ import Assets from "../../constants/Assets";
 import ProductItems from "../../components/Ui/ProductItems";
 
 export default function Products() {
+  const products = Array(9).fill({});
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [category, setCategory] = React.useState("");
 
@@ -113,8 +114,28 @@ export default function Products() {
           </button>
         </div>
       </div>
-      <div>
-        <ProductItems />
+      <div className="px-8">
+        <div className=" py-8">
+          <div className="grid grid-cols-3 gap-6">
+            {products.map((product, index) => (
+              <ProductItems key={index} />
+            ))}
+          </div>
+        </div>
+        {/* <ProductItems /> */}
+        <div className="flex justify-end items-center py-2">
+          <button className="text-gray-500 hover:text-gray-700">
+            Previous
+          </button>
+          <div className="flex space-x-1">
+            {[1, 2, 3, 4, 5].map((page) => (
+              <button key={page} className="px-3 py-1 border rounded">
+                {page}
+              </button>
+            ))}
+          </div>
+          <button className="text-gray-500 hover:text-gray-700">Next</button>
+        </div>
       </div>
     </div>
   );
