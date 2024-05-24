@@ -27,6 +27,9 @@ import enterprise from "../assets/img/Enterprise.png";
 import heart from "../assets/img/Heart.png";
 import piriton from "../assets/img/piriton.png";
 import naria from "../assets/img/naria.png";
+import close from "../assets/img/close.svg";
+import cover from "../assets/img/cover.png";
+import starr from "../assets/img/starr.png";
 const Assets = {
   plus,
   withdraw,
@@ -57,6 +60,9 @@ const Assets = {
   heart,
   piriton,
   naria,
+  close,
+  cover,
+  starr,
 };
 
 export default Assets;

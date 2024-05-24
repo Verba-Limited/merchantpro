@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Assets from "../../constants/Assets";
+import ProductEdit from "../modals/ProductEdit";
 
 export default function ProductItems() {
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
   return (
     <>
       <div className="bg-white shadow-md rounded-lg w-[70%] mx-auto">
@@ -20,12 +26,17 @@ export default function ProductItems() {
           <div className="flex justify-between">
             <img src={Assets.naria} alt="Naira Icon" />
             <p className="text-lg font-semibold">254.99</p>
-            <button className="flex items-center justify-center px-3 space-x-2 bg-[#234a75] text-white rounded">
+            <button
+              onClick={handleOpenModal}
+              className="flex items-center justify-center px-3 space-x-2 bg-[#234a75] text-white rounded"
+            >
               Edit
             </button>
           </div>
         </div>
       </div>
+
+      {openModal && <ProductEdit onClose={handleOpenModal} />}
     </>
   );
 }
