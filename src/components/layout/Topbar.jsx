@@ -1,28 +1,24 @@
-import { useState } from "react";
+import React from "react";
 // import logo from "../../assets/Logo-green-full.svg";
-import { ArrowLeft } from "iconsax-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+// import { ArrowLeft } from "iconsax-react";
+import { useLocation } from "react-router-dom";
 import TobarIcons from "../../constants/TobarIcons";
 
-export default function Topbar({ pageName, showHomeLink }) {
+export default function Topbar({ pageName }) {
   const location = useLocation();
 
-  const [showMenu, setShowMenu] = useState(false);
+  // const [showMenu, setShowMenu] = useState(false);
 
-  function handleMenu() {
-    setShowMenu(!showMenu);
-  }
+  // const routesWithArrowLeft = ["/dashboardr", "/discover/discover-people"];
 
-  const routesWithArrowLeft = ["/dashboardr", "/discover/discover-people"];
+  // const shouldRenderArrowLeft = routesWithArrowLeft.includes(location.pathname);
+  // const navigate = useNavigate();
 
-  const shouldRenderArrowLeft = routesWithArrowLeft.includes(location.pathname);
-  const navigate = useNavigate();
+  // const pathname = location.pathname;
 
-  const pathname = location.pathname;
-
-  const handleGoBack = () => {
-    navigate(-1);
-  };
+  // const handleGoBack = () => {
+  //   navigate(-1);
+  // };
 
   return (
     <div className="py-4  md:pt-8 sticky z-30  inset-0 md:px-0 md:bg-[#FFF] h-full md:flex flex-col md:justify-between md:flex-row items-center w-full bg-50-500 md:border-b  md:gap-5 ">
@@ -38,7 +34,7 @@ export default function Topbar({ pageName, showHomeLink }) {
             </h1>
 
             <div className="mr-3 d-flex justify-content-between">
-              <TobarIcons /> {/* Using TopbarIcon component */}
+              <TobarIcons />
             </div>
           </div>
         </div>

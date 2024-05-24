@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Category,
   People,
@@ -14,7 +14,6 @@ import Logo from "../../assets/img/mplogo.png";
 // import AdminButton from "../UI/AdminButton";
 
 export default function Sidebar() {
-  const navigate = useNavigate();
   const location = useLocation();
 
   const isActive = (path) => {
@@ -32,10 +31,6 @@ export default function Sidebar() {
     { path: "/help", icon: Sms, label: "Help" },
     { path: "/register", icon: LogoutCurve, label: "Log Out" },
   ];
-
-  const handleLogout = () => {
-    navigate("dashboard");
-  };
 
   return (
     <aside

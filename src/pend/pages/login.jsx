@@ -1,8 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-// import "../assets/vendor/fonts/circular-std/style.css";
-// import "../assets/libs/css/style.css";
-// import '../assets/vendor/fonts/fontawesome/css/fontawesome-all.css';
+import "../assets/vendor/fonts/circular-std/style.css";
+import "../assets/libs/css/style.css";
+import "../assets/vendor/fonts/fontawesome/css/fontawesome-all.css";
 
 // import '../App.css';
 

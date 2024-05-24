@@ -17,7 +17,7 @@ import email from "../assets/img/email2.png";
 import eyeSlash from "../assets/img/eye=off.png";
 import reseticon from "../assets/img/resetSuccess.png";
 import cart from "../assets/img/cart.svg";
-import lokmal from "../assets/img/lokmal2.svg";
+import lokmal from "../assets/img/lokmal.png";
 import dots from "../assets/img/dots.png";
 import ads from "../assets/img/Ads.png";
 import productbg from "../assets/img/productbg.png";

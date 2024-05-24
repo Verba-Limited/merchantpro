@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// eslint-disable-next-line
 import "../../assets/css/nucleo-icons.css";
 import "../../assets/css/nucleo-svg.css";
 import "https://kit.fontawesome.com/42d5adcbca.js";
@@ -19,13 +20,13 @@ export default function Login() {
     backgroundSize: "cover",
   };
 
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState(false);
+  // const [message, setMessage] = useState("");
+  // const [error, setError] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
-  const [userProfile, setUserProfile] = useState({});
+  // const [token, setToken] = useState("");
+  // const [userProfile, setUserProfile] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -122,7 +123,7 @@ export default function Login() {
                       </p>
                     </div>
                     <div className="card-body">
-                      {message && (
+                      {/* {message && (
                         <div
                           className={
                             error
@@ -133,7 +134,7 @@ export default function Login() {
                         >
                           {message}
                         </div>
-                      )}
+                      )} */}
                       <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                           <input

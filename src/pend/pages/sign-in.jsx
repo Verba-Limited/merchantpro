@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
-import React, { useState, useEffect } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+// import axios from "axios";
 import "../assets/css/nucleo-icons.css";
 import "../assets/css/nucleo-svg.css";
 import "https://kit.fontawesome.com/42d5adcbca.js";
@@ -25,53 +25,53 @@ export default function SignIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
-  const [userProfile, setUserProfile] = useState({});
+  // const [token, setToken] = useState("");
+  // const [userProfile, setUserProfile] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     navigate("/dashboard");
-    // try {
-    //   const parsedRequest = { email, password };
-    //   console.log(parsedRequest);
-    //   const response = await axios.post(
-    //     "http://localhost:5001/api/merchant/auth/login",
-    //     parsedRequest
-    //   );
-    //   console.log(response.data);
-    //   // Redirect or show success message
-    //   setError(false);
-    //   setMessage(response.data.message);
-    //   if (response.data.statusCode === 200) {
-    //     setToken(response.data.data.extra.token);
-    //     setUserProfile(response.data.data.info);
+    try {
+      const parsedRequest = { email, password };
+      console.log(parsedRequest);
+      const response = await axios.post(
+        "http://localhost:5001/api/merchant/auth/login",
+        parsedRequest
+      );
+      console.log(response.data);
+      // Redirect or show success message
+      setError(false);
+      setMessage(response.data.message);
+      if (response.data.statusCode === 200) {
+        setToken(response.data.data.extra.token);
+        setUserProfile(response.data.data.info);
 
-    //     localStorage.setItem("mpToken", response.data.data.extra.token);
-    //     localStorage.setItem(
-    //       "mpUserProfile",
-    //       JSON.stringify(response.data.data.info)
-    //     );
+        localStorage.setItem("mpToken", response.data.data.extra.token);
+        localStorage.setItem(
+          "mpUserProfile",
+          JSON.stringify(response.data.data.info)
+        );
 
-    //     setTimeout(() => {
-    //       // 👇 Redirects to about page, note the `replace: true`
-    //       navigate("/dashboard", { replace: true });
-    //     }, 1500);
-    //   }
-    // } catch (error) {
-    //   console.error("Error:", error?.response?.data?.message);
-    //   // Handle error
-    //   setError(true);
-    //   setMessage(error?.response?.data?.message);
-    // }
+        setTimeout(() => {
+          // 👇 Redirects to about page, note the `replace: true`
+          navigate("/dashboard", { replace: true });
+        }, 1500);
+      }
+    } catch (error) {
+      console.error("Error:", error?.response?.data?.message);
+      // Handle error
+      setError(true);
+      setMessage(error?.response?.data?.message);
+    }
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     // 👇 Redirects to about page, note the `replace: true`
-  //     navigate("/about", { replace: true });
-  //   }, 3000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      // 👇 Redirects to about page, note the `replace: true`
+      // navigate("/about", { replace: true });
+    }, 3000);
+  }, []);
 
   return (
     <div>
@@ -212,11 +212,4 @@ export default function SignIn() {
       </main>
     </div>
   );
-}
-
-{
-  /* <script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script> */
 }

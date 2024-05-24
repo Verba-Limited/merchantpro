@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import house from "../../assets/img/house.png";
 import dots from "../../assets/img/dots.png";
 import pink from "../../assets/img/pink.png";
 import emzor from "../../assets/img/emzor.png";
-import bg from "../../assets/img/Mask.png";
 import health from "../../assets/img/health.png";
 import icon from "../../assets/img/images/Icon.png";
-// import "bootstrap/dist/css/bootstrap.css";
 
-import { Table, Pagination } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import BarChart from "../../components/layout/BarChart";
 import { Link } from "react-router-dom";
 
@@ -88,13 +86,6 @@ export default function Dashboard() {
     },
   ];
 
-  const myStyle = {
-    backgroundImage: `url(${bg})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    height: "200px",
-    position: "relative",
-  };
   return (
     <div>
       <div class="container-fluid py-4">
@@ -356,14 +347,6 @@ export default function Dashboard() {
               <div class="col-lg-6 mb-lg-0 mb-4">
                 <div class="copyright text-center text-sm text-muted text-lg-start">
                   © 2024, made with <i class="fa fa-heart"></i> by
-                  <a
-                    href="#"
-                    class="font-weight-bold"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    #####
-                  </a>
                 </div>
               </div>
             </div>

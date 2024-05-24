@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+// eslint-disable-next-line
 import "../../assets/css/nucleo-icons.css";
 import "../../assets/css/nucleo-svg.css";
 import "https://kit.fontawesome.com/42d5adcbca.js";
@@ -18,8 +19,8 @@ export default function SignUp() {
     backgroundImage: `url(${businessbackground})`,
     backgroundSize: "cover",
   };
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState(false);
+  // const [message, setMessage] = useState("");
+  // const [error, setError] = useState(false);
 
   const [referralCode, setReferralCode] = useState();
   const [otherChannel, setOtherChannel] = useState();
@@ -166,7 +167,7 @@ export default function SignUp() {
                       </p>
                     </div>
                     <div className="card-body">
-                      {message && (
+                      {/* {message && (
                         <div
                           className={
                             error
@@ -177,7 +178,7 @@ export default function SignUp() {
                         >
                           {message}
                         </div>
-                      )}
+                      )} */}
                       <form onSubmit={handleSubmit}>
                         <div className="row">
                           <label className="text-body">Business Name</label>
