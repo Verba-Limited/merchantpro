@@ -30,6 +30,8 @@ import naria from "../assets/img/naria.png";
 import close from "../assets/img/close.svg";
 import cover from "../assets/img/cover.png";
 import starr from "../assets/img/starr.png";
+import date from "../assets/img/date.svg";
+import divide from "../assets/img/divide.png";
 const Assets = {
   plus,
   withdraw,
@@ -63,6 +65,8 @@ const Assets = {
   close,
   cover,
   starr,
+  date,
+  divide,
 };
 
 export default Assets;

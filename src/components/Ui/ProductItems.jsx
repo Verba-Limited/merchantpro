@@ -8,6 +8,10 @@ export default function ProductItems() {
   const handleOpenModal = () => {
     setOpenModal(true);
   };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
   return (
     <>
       <div className="bg-white shadow-md rounded-lg w-[70%] mx-auto">
@@ -36,7 +40,7 @@ export default function ProductItems() {
         </div>
       </div>
 
-      {openModal && <ProductEdit onClose={handleOpenModal} />}
+      {openModal && <ProductEdit onClose={handleCloseModal} />}
     </>
   );
 }

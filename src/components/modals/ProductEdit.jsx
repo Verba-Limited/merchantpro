@@ -116,6 +116,38 @@ export default function ProductEdit({ onClose }) {
                 ))}
               </div>
             </div>
+            <div className="flex justify-between items-center">
+              <div className="flex space-x-3 items-center">
+                <input type="checkbox" className="h-[20px] w-[20px]" />
+                <p className="text-[#2B2B2B] text-[16px] font-normal">
+                  Requested Post Dated Cheque
+                </p>
+              </div>
+              <p className="text-[#8DE301] text-[14px] font-normal">
+                Available
+              </p>
+            </div>
+            <div className="flex space-x-12">
+              <div className="space-y-3">
+                <h1 className="text-[#2B2B2B] text-[14px] font-medium">
+                  Payment Plan
+                </h1>
+                <div className="flex space-x-3 border-2 border-gray-300 px-4 py-2">
+                  <div className="flex items-center space-x-3">
+                    <p>Start Date</p>
+                    <img src={Assets.divide} alt="" />
+                    <p>End Date</p>
+                    <img src={Assets.date} alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end">
+              <button className="bg-[#4d9a1d]  px-5 py-2 text-white rounded-lg font-medium text-[16px]">
+                Update
+              </button>
+            </div>
           </div>
         </div>
       </div>
