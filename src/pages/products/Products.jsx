@@ -113,8 +113,8 @@ export default function Products() {
           </button>
         </div>
       </div>
-      <div className="px-8">
-        <div className=" py-8">
+      <div className="">
+        <div className="pt-5">
           <div className="grid grid-cols-3 gap-6">
             {products.map((product, index) => (
               <ProductItems key={index} />
