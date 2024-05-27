@@ -2,11 +2,6 @@ import React from "react";
 import { useState } from "react";
 // import axios from "axios";
 // eslint-disable-next-line
-import "../../assets/css/nucleo-icons.css";
-import "../../assets/css/nucleo-svg.css";
-import "https://kit.fontawesome.com/42d5adcbca.js";
-import "../../assets/css/nucleo-svg.css";
-import "../../assets/css/argon-dashboard.css";
 import { Link, useNavigate } from "react-router-dom";
 
 import businessbackground from "../../assets/img/businessman.png";
@@ -397,12 +392,12 @@ export default function SignUp() {
                     <div className="card-footer text-center pt-0 px-lg-2 px-1">
                       <p className="mb-4 text-sm mx-auto">
                         Already have an account? &nbsp;
-                        <a
-                          href="/login"
+                        <Link
+                          to="/login"
                           className="text-success text-gradient font-weight-bold"
                         >
                           Login
-                        </a>
+                        </Link>
                       </p>
                     </div>
                   </div>
