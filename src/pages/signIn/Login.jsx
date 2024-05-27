@@ -1,12 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// eslint-disable-next-line
-// import "../../assets/css/nucleo-icons.css";
-// import "../../assets/css/nucleo-svg.css";
-// import "https://kit.fontawesome.com/42d5adcbca.js";
-// import "../../assets/css/nucleo-svg.css";
-// import "../../assets/css/argon-dashboard.css";
 
 import businessbackground from "../../assets/img/businessman.png";
 import mplogo from "../../assets/img/mplogo.png";
