@@ -36,6 +36,7 @@ export default function Settings() {
     businessNumber: "",
     state: "",
     localGovernment: "",
+    selectedCountry: "",
   });
 
   const [file, setFile] = useState(null);

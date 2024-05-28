@@ -9,9 +9,11 @@ import {
   FormControl,
 } from "@mui/material";
 import Assets from "../../constants/Assets";
+import { useNavigate } from "react-router-dom";
 import ProductItems from "../../components/Ui/ProductItems";
 
 export default function Products() {
+  const navigate = useNavigate();
   const products = Array(9).fill({});
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [category, setCategory] = React.useState("");
@@ -30,6 +32,11 @@ export default function Products() {
     backgroundSize: "cover",
     height: "344px",
     position: "relative",
+  };
+
+  const navigateToSuggestionPage = () => {
+    console.log("Button clicked");
+    navigate("/products/addProducts");
   };
   return (
     <div className="container mt-4 p-4">
@@ -108,7 +115,10 @@ export default function Products() {
         </div>
 
         <div>
-          <button className="bg-[#4d9a1d] px-5 py-2 text-white rounded-lg font-medium text-[24px]">
+          <button
+            onClick={navigateToSuggestionPage}
+            className="bg-[#4d9a1d] px-5 py-2 text-white rounded-lg font-medium text-[24px]"
+          >
             Add product
           </button>
         </div>

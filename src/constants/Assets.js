@@ -32,6 +32,9 @@ import cover from "../assets/img/cover.png";
 import starr from "../assets/img/starr.png";
 import date from "../assets/img/date.svg";
 import divide from "../assets/img/divide.png";
+import vid from "../assets/img/Page-1.svg";
+import syrup from "../assets/img/syrup.png";
+import multiply from "../assets/img/Multiply.png";
 const Assets = {
   plus,
   withdraw,
@@ -67,6 +70,9 @@ const Assets = {
   starr,
   date,
   divide,
+  vid,
+  syrup,
+  multiply,
 };
 
 export default Assets;
