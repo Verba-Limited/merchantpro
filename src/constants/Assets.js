@@ -35,6 +35,7 @@ import divide from "../assets/img/divide.png";
 import vid from "../assets/img/Page-1.svg";
 import syrup from "../assets/img/syrup.png";
 import multiply from "../assets/img/Multiply.png";
+import dropImg from "../assets/img/dropImg.svg";
 const Assets = {
   plus,
   withdraw,
@@ -73,6 +74,7 @@ const Assets = {
   vid,
   syrup,
   multiply,
+  dropImg,
 };
 
 export default Assets;
