@@ -15,6 +15,9 @@ import Wallet from "./pages/wallet/Wallet";
 import Reports from "./pages/reports/Reports";
 import Settings from "./pages/settings/Settings";
 import Help from "./pages/help/Help";
+import Profile from "./pages/profile/Profile";
+// import SubPages from "./components/Ui/SubPages";
+import AddProduct from "./components/layout/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -38,12 +41,20 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
         path: "/orders",
         element: <Orders />,
       },
       {
         path: "/products",
         element: <Products />,
+      },
+      {
+        path: "/products/addProducts",
+        element: <AddProduct />,
       },
       {
         path: "/wallet",

@@ -124,7 +124,7 @@ export default function SignUp() {
                     style={myStyle}
                   >
                     <span className="mask opacity-6"></span>
-                    <h1 className="mt-12 pt-7 text-white font-weight-bolder position-relative">
+                    <h1 className="mt-12 pt-7 text-white text-4xl font-weight-bolder position-relative">
                       <span style={{ color: "#234A75" }}>
                         Connecting sellers{" "}
                       </span>
