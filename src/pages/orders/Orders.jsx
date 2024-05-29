@@ -1,107 +1,11 @@
 import React, { useState } from "react";
 import Assets from "../../constants/Assets";
+import { orderItems, drugs, merchants, dates, statuses } from "../../data";
 
 export default function Orders() {
   const [selectedMerchant, setSelectedMerchant] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedDate, setSelectedDate] = useState("today");
-
-  const merchants = [
-    { value: "all", label: "All" },
-    { value: "merchant1", label: "Merchant 1" },
-    { value: "merchant2", label: "Merchant 2" },
-    { value: "merchant3", label: "Merchant 3" },
-  ];
-
-  const statuses = [
-    { value: "all", label: "All" },
-    { value: "completed", label: "Completed" },
-    { value: "pending", label: "Pending" },
-    { value: "cancelled", label: "Cancelled" },
-  ];
-
-  const dates = [
-    { value: "today", label: "Today" },
-    { value: "yesterday", label: "Yesterday" },
-    { value: "last7days", label: "Last 7 Days" },
-    { value: "last30days", label: "Last 30 Days" },
-  ];
-
-  const orderItems = [
-    {
-      status: `Today's Order`,
-      price: 53000,
-      img: Assets.cart,
-    },
-    {
-      status: `Pending`,
-      price: 120000,
-      img: Assets.cart,
-    },
-    {
-      status: `Cancelled`,
-      price: 53,
-      img: Assets.cart,
-    },
-    {
-      status: `Volume`,
-      price: 53000,
-      img: Assets.cart,
-    },
-  ];
-
-  const data = [
-    {
-      productNo: "0125485647",
-      cover: Assets.lokmal,
-      productName: "Lokmal Malaria",
-      merchantName: "Tunde Orioza",
-      qty: 100,
-      price: "10,000",
-      dateCreated: "20/12/2563 14:20:44",
-      status: "Paid",
-    },
-    {
-      productNo: "0125485647",
-      cover: Assets.lokmal,
-      productName: "Lokmal Malaria",
-      merchantName: "Tunde Orioza",
-      qty: 100,
-      price: "10,000",
-      dateCreated: "20/12/2563 14:20:44",
-      status: "5days deferral",
-    },
-    {
-      productNo: "0125485647",
-      cover: Assets.lokmal,
-      productName: "Lokmal Malaria",
-      merchantName: "Tunde Orioza",
-      qty: 100,
-      price: "10,000",
-      dateCreated: "20/12/2563 14:20:44",
-      status: "Paid",
-    },
-    {
-      productNo: "0125485647",
-      cover: Assets.lokmal,
-      productName: "Lokmal Malaria",
-      merchantName: "Tunde Orioza",
-      qty: 100,
-      price: "10,000",
-      dateCreated: "20/12/2563 14:20:44",
-      status: "5days deferral",
-    },
-    {
-      productNo: "0125485647",
-      cover: Assets.lokmal,
-      productName: "Lokmal Malaria",
-      merchantName: "Tunde Orioza",
-      qty: 100,
-      price: "10,000",
-      dateCreated: "20/12/2563 14:20:44",
-      status: "Canceled",
-    },
-  ];
 
   const myStyle = {
     backgroundImage: `url(${Assets.ads})`,
@@ -249,7 +153,7 @@ export default function Orders() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {drugs.map((item, index) => (
               <tr key={index}>
                 <td className="py-4 px-4 border-b">{item.productNo}</td>
                 <td className="py-4 px-4 border-b">
