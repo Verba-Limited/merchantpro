@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Table } from "react-bootstrap";
 import Assets from "../../constants/Assets";
 
 export default function Help() {
@@ -27,24 +26,6 @@ export default function Help() {
     },
   ];
 
-  // const partners = [
-  //   {
-  //     number: "20,000",
-  //     details: "View Details",
-  //   },
-  //   {
-  //     number: "20,000",
-  //     details: "View Details",
-  //   },
-  //   {
-  //     number: "20,000",
-  //     details: "View Details",
-  //   },
-  //   {
-  //     number: "20,000",
-  //     details: "View Details",
-  //   },
-  // ];
   return (
     <>
       <div className="container">
