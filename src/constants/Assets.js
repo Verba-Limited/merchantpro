@@ -36,6 +36,9 @@ import vid from "../assets/img/Page-1.svg";
 import syrup from "../assets/img/syrup.png";
 import multiply from "../assets/img/Multiply.png";
 import dropImg from "../assets/img/dropImg.svg";
+import red from "../assets/img/red.svg";
+import green from "../assets/img/green.svg";
+import avatar from "../assets/img/avatar.png";
 const Assets = {
   plus,
   withdraw,
@@ -75,6 +78,9 @@ const Assets = {
   syrup,
   multiply,
   dropImg,
+  red,
+  green,
+  avatar,
 };
 
 export default Assets;

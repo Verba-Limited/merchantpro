@@ -1,11 +1,13 @@
 import React from "react";
 import { orderItems, salesData, drugs } from "../../data";
 import Assets from "../../constants/Assets";
+import { orderTable } from "../../data";
+import OrderTable from "../../components/Ui/OrderTable";
 
 export default function Reports() {
   return (
     <>
-      <div className="container md:space-y-6">
+      <div className="container md:space-y-10">
         <div className="flex justify-between pt-4 p-3">
           {orderItems.map((items, index) => (
             <div
@@ -200,6 +202,15 @@ export default function Reports() {
                 Download
               </button>
             </div>
+          </div>
+        </div>
+
+        <div className="border border-gray-300 p-4">
+          <div>
+            <h1 className="text-[24px] text-[#414D55] font-bold mb-4 font-[inter]">
+              Orders
+            </h1>
+            <OrderTable data={orderTable} />
           </div>
         </div>
       </div>
