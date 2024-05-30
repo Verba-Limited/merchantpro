@@ -39,6 +39,8 @@ import dropImg from "../assets/img/dropImg.svg";
 import red from "../assets/img/red.svg";
 import green from "../assets/img/green.svg";
 import avatar from "../assets/img/avatar.png";
+import avatar2 from "../assets/img/avatar2.png";
+import mobile from "../assets/img/mobile.svg";
 const Assets = {
   plus,
   withdraw,
@@ -81,6 +83,8 @@ const Assets = {
   red,
   green,
   avatar,
+  avatar2,
+  mobile,
 };
 
 export default Assets;

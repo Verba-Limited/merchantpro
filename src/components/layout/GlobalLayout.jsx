@@ -11,7 +11,7 @@ export default function GlobalLayout() {
 
   const pathToPageName = {
     "/dashboard": "Hey Jane, Good afternoon",
-    "/profile": "Profile",
+    "/profile": "Merchant's Details",
     "/orders": "Orders",
     "/products": " Products",
     "/products/addProducts": "Add Products",
