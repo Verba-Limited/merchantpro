@@ -18,6 +18,7 @@ import Help from "./pages/help/Help";
 import Profile from "./pages/profile/Profile";
 // import SubPages from "./components/Ui/SubPages";
 import AddProduct from "./components/layout/AddProduct";
+import ForgetPassword from "./pages/forgetpassword/ForgetPassword";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "reset-password",
+    element: <ForgetPassword />,
   },
   {
     path: "/",

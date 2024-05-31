@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../assets/css/argon-dashboard.css";
 
 import businessbackground from "../../assets/img/businessman.png";
@@ -167,12 +167,12 @@ export default function Login() {
                             </label>
                           </div>
                           <p className="text-sm text-end mt-n4">
-                            <a
-                              href="/forgotpassword"
+                            <Link
+                              to="/reset-password"
                               className="text-primary text-gradient font-weight-bold"
                             >
                               Forgot Password?
-                            </a>
+                            </Link>
                           </p>
                         </div>
                         <div className="text-center">
