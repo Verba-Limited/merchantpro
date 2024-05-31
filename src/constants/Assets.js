@@ -41,6 +41,7 @@ import green from "../assets/img/green.svg";
 import avatar from "../assets/img/avatar.png";
 import avatar2 from "../assets/img/avatar2.png";
 import mobile from "../assets/img/mobile.svg";
+import resetLogo from "../assets/img/resetLogo.png";
 const Assets = {
   plus,
   withdraw,
@@ -85,6 +86,7 @@ const Assets = {
   avatar,
   avatar2,
   mobile,
+  resetLogo,
 };
 
 export default Assets;
