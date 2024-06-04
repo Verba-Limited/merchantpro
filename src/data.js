@@ -207,3 +207,78 @@ export const headers = [
   "Status",
   "Action",
 ];
+
+export const orders = [
+  {
+    company: "C1k567891078",
+    date: "21 July",
+    product: "Lotam",
+    qty: 200,
+    price: "₦14,000",
+    status: "Approved",
+    statusClass: "success",
+  },
+  {
+    company: "C1k567891078",
+    date: "21 July",
+    product: "Lotam",
+    qty: 200,
+    price: "₦14,000",
+    status: "Approved",
+    statusClass: "success",
+  },
+  {
+    company: "C1k567891078",
+    date: "21 July",
+    product: "Lotam",
+    qty: 200,
+    price: "₦14,000",
+    status: "Pending",
+    statusClass: "warning",
+  },
+  {
+    company: "C1k567891078",
+    date: "21 July",
+    product: "Lotam",
+    qty: 200,
+    price: "₦14,000",
+    status: "Approved",
+    statusClass: "success",
+  },
+  {
+    company: "C1k567891078",
+    date: "21 July",
+    product: "Lotam",
+    qty: 200,
+    price: "₦14,000",
+    status: "Approved",
+    statusClass: "success",
+  },
+];
+
+export const partners = [
+  {
+    number: "20,000",
+    details: "View Details",
+  },
+  {
+    number: "20,000",
+    details: "View Details",
+  },
+  {
+    number: "20,000",
+    details: "View Details",
+  },
+  {
+    number: "20,000",
+    details: "View Details",
+  },
+  {
+    number: "20,000",
+    details: "View Details",
+  },
+  {
+    number: "20,000",
+    details: "View Details",
+  },
+];

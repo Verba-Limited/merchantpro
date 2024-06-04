@@ -5,7 +5,7 @@ import user from "../../src/assets/img/user.png";
 
 export default function TobarIcons() {
   return (
-    <div className="container">
+    <div className="container hidden md:flex">
       <div className="d-flex justify-content-between">
         <img
           src={bell}

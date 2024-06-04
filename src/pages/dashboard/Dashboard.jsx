@@ -1,102 +1,22 @@
 import React from "react";
-import house from "../../assets/img/house.png";
-import dots from "../../assets/img/dots.png";
-import pink from "../../assets/img/pink.png";
-import emzor from "../../assets/img/emzor.png";
-import health from "../../assets/img/health.png";
-import icon from "../../assets/img/images/Icon.png";
-
+import Assets from "../../constants/Assets";
 import { Table } from "react-bootstrap";
 import BarChart from "../../components/layout/BarChart";
 import { Link } from "react-router-dom";
-
+import { orders, partners } from "../../data";
+import Pagination from "../../components/Ui/Pagination";
 export default function Dashboard() {
-  const orders = [
-    {
-      company: "C1k567891078",
-      date: "21 July",
-      product: "Lotam",
-      qty: 200,
-      price: "₦14,000",
-      status: "Approved",
-      statusClass: "success",
-    },
-    {
-      company: "C1k567891078",
-      date: "21 July",
-      product: "Lotam",
-      qty: 200,
-      price: "₦14,000",
-      status: "Approved",
-      statusClass: "success",
-    },
-    {
-      company: "C1k567891078",
-      date: "21 July",
-      product: "Lotam",
-      qty: 200,
-      price: "₦14,000",
-      status: "Pending",
-      statusClass: "warning",
-    },
-    {
-      company: "C1k567891078",
-      date: "21 July",
-      product: "Lotam",
-      qty: 200,
-      price: "₦14,000",
-      status: "Approved",
-      statusClass: "success",
-    },
-    {
-      company: "C1k567891078",
-      date: "21 July",
-      product: "Lotam",
-      qty: 200,
-      price: "₦14,000",
-      status: "Approved",
-      statusClass: "success",
-    },
-  ];
-
-  const partners = [
-    {
-      number: "20,000",
-      details: "View Details",
-    },
-    {
-      number: "20,000",
-      details: "View Details",
-    },
-    {
-      number: "20,000",
-      details: "View Details",
-    },
-    {
-      number: "20,000",
-      details: "View Details",
-    },
-    {
-      number: "20,000",
-      details: "View Details",
-    },
-    {
-      number: "20,000",
-      details: "View Details",
-    },
-  ];
-
   return (
     <div>
       <div class="container-fluid py-4">
         <div class="row">
           <div className="d-flex justify-content-end mb-4">
             <Link to="/settings">
-              <button className="bg-[#f28f1e] text-white px-7 rounded-xl py-2 flex space-x-5 items-center">
+              <button className="bg-[#f28f1e] text-white px-7 rounded-xl py-2 flex space-x-5 items-center max-[500px]:px-6">
                 <div className="rounded-full bg-[#f5a445] p-3 ">
-                  <img src={icon} alt="" />
+                  <img src={Assets.icons} alt="" width={30} height={30} />
                 </div>
-                <span> Complete your KYC</span>
+                <span className="whitespace-nowrap"> Complete your KYC</span>
               </button>
             </Link>
           </div>
@@ -197,18 +117,12 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <div class="row mt-4">
-          <div class="col-lg-12 mb-lg-0 mb-4">
-            <div class="card z-index-2 h-100 ">
-              <div class="card-body p-3">
-                <BarChart />
-              </div>
-            </div>
-          </div>
+        <div className="bg-white shadow-sm rounded-md mt-16 md:p-5 p-3">
+          <BarChart />
         </div>
         <div class=" mt-4">
           <div class="mb-lg-0 mb-4">
-            <div class="card ">
+            <div class="bg-white shadow-sm rounded-md mt-16 md:p-5">
               <div className="p-3">
                 <h1 className="fs-3 fw-normal text-black">Orders</h1>
               </div>
@@ -229,7 +143,7 @@ export default function Dashboard() {
                       <tr key={index}>
                         <td>
                           <img
-                            src={house}
+                            src={Assets.house}
                             alt="Company Logo"
                             className="me-2 fs-6"
                           />
@@ -245,32 +159,18 @@ export default function Dashboard() {
                           </span>
                         </td>
                         <td>
-                          <img src={dots} alt="" />
+                          <img src={Assets.action} alt="" />
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </Table>
               </div>
-              <div className="flex justify-end items-center py-2">
-                <button className="text-gray-500 hover:text-gray-700">
-                  Previous
-                </button>
-                <div className="flex space-x-1">
-                  {[1, 2, 3, 4, 5].map((page) => (
-                    <button key={page} className="px-3 py-1 border rounded">
-                      {page}
-                    </button>
-                  ))}
-                </div>
-                <button className="text-gray-500 hover:text-gray-700">
-                  Next
-                </button>
-              </div>
+              <Pagination />
             </div>
 
-            <div className="card mt-4">
-              <div className="flex space-x-28 p-5 gx-5">
+            <div className="bg-white shadow-sm rounded-md mt-16 border2">
+              <div className="md:flex md:justify-between p-5 gx-5">
                 <div className="col-lg-5 ">
                   <div>
                     <h1 className="fs-3 fw-normal text-black">Top Partner</h1>
@@ -283,7 +183,7 @@ export default function Dashboard() {
                           <th className="fs-6">
                             {" "}
                             <img
-                              src={pink}
+                              src={Assets.pinky}
                               alt="Company Logo"
                               className="me-2"
                             />
@@ -297,7 +197,7 @@ export default function Dashboard() {
                           <tr key={index}>
                             <td>
                               <img
-                                src={emzor}
+                                src={Assets.emzor}
                                 alt="Company Logo"
                                 className="me-2"
                               />
@@ -311,7 +211,7 @@ export default function Dashboard() {
                     </Table>
                     <div className="mt-4">
                       <div className="flex ">
-                        <button className="text-gray-500 hover:text-gray-700">
+                        <button className="text-gray-500 hover:text-gray-700 hidden md:flex">
                           Previous
                         </button>
                         <div className="flex space-x-1">
@@ -324,7 +224,7 @@ export default function Dashboard() {
                             </button>
                           ))}
                         </div>
-                        <button className="text-gray-500 hover:text-gray-700">
+                        <button className="text-gray-500 hover:text-gray-700 hidden md:flex">
                           Next
                         </button>
                       </div>
@@ -334,7 +234,7 @@ export default function Dashboard() {
 
                 <div className="col-lg-5  ">
                   <div className=" mt-7">
-                    <img src={health} alt="" />
+                    <img src={Assets.health} alt="" />
                   </div>
                 </div>
               </div>

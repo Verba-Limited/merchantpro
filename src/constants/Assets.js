@@ -42,11 +42,23 @@ import avatar from "../assets/img/avatar.png";
 import avatar2 from "../assets/img/avatar2.png";
 import mobile from "../assets/img/mobile.svg";
 import resetLogo from "../assets/img/resetLogo.png";
+import house from "../assets/img/house.png";
+import action from "../assets/img/dots.png";
+import pinky from "../assets/img/pink.png";
+import emzor from "../assets/img/emzor.png";
+import health from "../assets/img/health.png";
+import icons from "../assets/img/Icon.svg";
 const Assets = {
   plus,
   withdraw,
   transfer,
   eye,
+  house,
+  action,
+  pinky,
+  emzor,
+  health,
+  icons,
   arrow,
   arrowLeft,
   arrowRight,
