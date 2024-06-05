@@ -17,9 +17,9 @@ export default function Profile() {
           <div style={myStyle} className="">
             <div className="">
               <div className="flex justify-between p-5">
-                <img src={Assets.avatar2} alt="emzor-logo" />
+                <img src={Assets.avatar2} alt="avatar-logo" />
                 <div>
-                  <button className="text-white bg-[#4196bc] py-3 px-5 rounded-md hidden md:flex">
+                  <button className="text-white bg-[#4196bc] py-3 px-5 rounded-md hidden md:block">
                     502k Sales
                   </button>
                 </div>
@@ -47,7 +47,7 @@ export default function Profile() {
             </button>
           </div>
 
-          <div className="border border-gray-300 mt-10">
+          <div className="border border-gray-300 mt-4">
             <div className="p-6 flex max-[500px]:flex-col gap-5 justify-evenly ">
               <div className="flex flex-col space-y-6">
                 <div>

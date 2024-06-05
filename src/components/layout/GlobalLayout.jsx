@@ -4,15 +4,15 @@ import Topbar from "./Topbar";
 import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-const Container = styled.div`
-  @media (max-width: 500px) {
-    display: none;
-  }
+// const Container = styled.div`
+//   @media (max-width: 500px) {
+//     display: none;
+//   }
 
-  @media (min-width: 600px) {
-    display: flex;
-  }
-`;
+//   @media (min-width: 600px) {
+//     display: flex;
+//   }
+// `;
 
 export default function GlobalLayout() {
   const location = useLocation();
@@ -36,7 +36,7 @@ export default function GlobalLayout() {
       <div className="w-full">
         <Sidebar />
 
-        <div className="md:ml-[16%] ">
+        <div className="md-plus:ml-[20%] xl-plus:ml-[19%] 2xl-plus:ml-[15.8%] lg-plus:ml-[23.4%]">
           <Topbar pageName={currentPageName} className="" />
           <main className=" ">
             <Outlet />
