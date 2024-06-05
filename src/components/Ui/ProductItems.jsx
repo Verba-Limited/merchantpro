@@ -14,7 +14,7 @@ export default function ProductItems() {
   };
   return (
     <>
-      <div className="bg-white shadow-md rounded-lg w-[70%] mx-auto">
+      <div className="bg-white shadow-md rounded-lg w-[80%] mx-auto">
         <div className="p-3 space-y-7">
           <div className="flex justify-between items-center">
             <h1 className="font-bold text-lg">Piriton Syrup</h1>
@@ -29,7 +29,7 @@ export default function ProductItems() {
           </div>
           <div className="flex justify-between">
             <img src={Assets.naria} alt="Naira Icon" />
-            <p className="text-lg font-semibold">254.99</p>
+            <p className="text-xl font-semibold">254.99</p>
             <button
               onClick={handleOpenModal}
               className="flex items-center justify-center px-3 space-x-2 bg-[#234a75] text-white rounded"

@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import Assets from "../../constants/Assets";
 import { orderItems, drugs, merchants, dates, statuses } from "../../data";
+import {
+  TextField,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 
 export default function Orders() {
   const [selectedMerchant, setSelectedMerchant] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedDate, setSelectedDate] = useState("today");
+  const [category, setCategory] = React.useState("");
 
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
   const myStyle = {
     backgroundImage: `url(${Assets.ads})`,
     backgroundPosition: "center",
@@ -17,9 +28,12 @@ export default function Orders() {
 
   return (
     <div className="container md:space-y-4">
-      <div className="flex justify-between pt-4 p-3">
+      <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-4 md:p-3">
         {orderItems.map((items, index) => (
-          <div key={index} className="flex bg-[#f3f8fb] p-3 space-x-10 rounded">
+          <div
+            key={index}
+            className="flex bg-[#f3f8fb] max-[500px]:px-8 p-3 space-x-10 rounded"
+          >
             <div>
               <h1 className="text-[#A0AEC0] text-[12px] font-bold">
                 {items.status}
@@ -32,12 +46,12 @@ export default function Orders() {
           </div>
         ))}
       </div>
-      <div className="flex justify-between items-center  p-3">
-        <div className="flex items-center  space-x-5">
+      <div className="flex max-[500px]:flex-col justify-between items-center md:p-3">
+        <div className="flex items-center  space-x-5 max-[500px]:grid max-[500px]:grid-cols-2 gap-5">
           <div className="flex flex-col">
             <label className=" text-gray-700">Merchant</label>
             <select
-              className="min-w-[150px] md:min-w-[200px] lg:min-w-[250px] border border-gray-300 rounded p-2"
+              className="max-w-[150px] md:min-w-[150px] border border-gray-300 rounded p-2"
               value={selectedMerchant}
               onChange={(e) => setSelectedMerchant(e.target.value)}
             >
@@ -52,7 +66,7 @@ export default function Orders() {
           <div className="flex flex-col">
             <label className=" text-gray-700">Status</label>
             <select
-              className="min-w-[150px] md:min-w-[200px] lg:min-w-[250px] border border-gray-300 rounded p-2"
+              className="max-w-[150px] md:min-w-[150px] border border-gray-300 rounded p-2"
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
             >
@@ -67,7 +81,7 @@ export default function Orders() {
           <div className="flex flex-col">
             <label className=" text-gray-700">Date</label>
             <select
-              className="min-w-[150px] md:min-w-[200px] lg:min-w-[250px] border border-gray-300 rounded p-2"
+              className="max-w-[150px] md:min-w-[150px] border border-gray-300 rounded p-2"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
             >
@@ -100,7 +114,7 @@ export default function Orders() {
           </div>
         </div>
 
-        <div className="mt-4">
+        <div className="md:mt-4 max-[500px]:pt-4">
           <button className="flex items-center px-2 space-x-2  bg-[#234a75] text-white rounded">
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -39,12 +39,12 @@ export default function Products() {
     navigate("/products/addProducts");
   };
   return (
-    <div className="container mt-4 p-4">
+    <div className="md:container mt-4 md:p-4">
       <div style={myStyle} className="">
-        <div className="relative z-10">
-          <div className="flex justify-between p-5">
+        <div className="">
+          <div className="flex justify-between md:p-5 p-6">
             <img src={Assets.emzorlogo} alt="emzor-logo" />
-            <div>
+            <div className="hidden md:block">
               <button className="text-white bg-[#4196bc] py-3 px-5 rounded-md">
                 Edit Profile
               </button>
@@ -53,11 +53,11 @@ export default function Products() {
         </div>
       </div>
 
-      <div className="flex p-4 md:space-x-44">
-        <h1 className="text-[#234A75] text-[36px] font-medium">
+      <div className="md:flex p-2 md:p-4 md:space-x-44 max-[450px]:space-y-4 mt-3">
+        <h1 className="text-[#234A75] md:text-[36px] text-2xl font-medium max-[450px]:mt-5">
           Emzor Pharmaceuticals
         </h1>
-        <div className="flex space-x-4 items-center mr-24">
+        <div className="flex space-x-10 items-center mr-24">
           <div className="flex space-x-3 items-center">
             <img src={Assets.enterprise} alt="" width={30} height={30} />
             <p className="text-[#ACB0B6] text-[14px]">Nigeria</p>
@@ -71,9 +71,9 @@ export default function Products() {
         </div>
       </div>
 
-      <div className="flex justify-between items-center">
-        <div className="flex items-center space-x-16 p-4">
-          <FormControl variant="outlined" className="w-48">
+      <div className=" mt-3">
+        <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-3 md:items-center md:space-x-16 md:p-4 p-2">
+          <FormControl variant="outlined" className="w-48 max-[500px]:w-[100%]">
             <InputLabel>Product Category</InputLabel>
             <Select
               value={category}
@@ -112,26 +112,26 @@ export default function Products() {
             </svg>
             <p>search</p>
           </button>
-        </div>
 
-        <div>
-          <button
-            onClick={navigateToSuggestionPage}
-            className="bg-[#4d9a1d] px-5 py-2 text-white rounded-lg font-medium text-[24px]"
-          >
-            Add product
-          </button>
+          <div>
+            <button
+              onClick={navigateToSuggestionPage}
+              className="bg-[#4d9a1d] md:px-5 md:py-1 text-white rounded-lg whitespace-nowrap font-medium md:text-[24px]"
+            >
+              Add product
+            </button>
+          </div>
         </div>
       </div>
       <div className="">
         <div className="pt-5">
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
             {products.map((product, index) => (
               <ProductItems key={index} />
             ))}
           </div>
         </div>
-        {/* <ProductItems /> */}
+
         <div className="flex justify-end items-center py-2">
           <button className="text-gray-500 hover:text-gray-700">
             Previous
