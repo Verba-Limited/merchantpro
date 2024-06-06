@@ -282,3 +282,42 @@ export const partners = [
     details: "View Details",
   },
 ];
+
+export const transaction = [
+  {
+    id: 1,
+    icon: Assets.arrowRight,
+    title: " Payment to Emzor",
+    date: " Today, 26th Sept at 3:am",
+    price: "50,000,00",
+    img: Assets.approve,
+    status: "Success",
+  },
+  {
+    id: 2,
+    icon: Assets.arrowLeft,
+    title: " Withdrawal",
+    date: " Today, 26th Sept at 3:am",
+    price: "50,000,00",
+    img: Assets.approve,
+    status: "Success",
+  },
+  {
+    id: 3,
+    icon: Assets.arrowRight,
+    title: " Payment to Emzor",
+    date: " Today, 26th Sept at 3:am",
+    price: "50,000,00",
+    img: Assets.decline,
+    status: "Decline",
+  },
+  {
+    id: 4,
+    icon: Assets.arrowRight,
+    title: " Payment to Emzor",
+    date: " Today, 26th Sept at 3:am",
+    price: "50,000,00",
+    img: Assets.pending,
+    status: "Pending",
+  },
+];

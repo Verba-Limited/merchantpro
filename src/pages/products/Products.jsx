@@ -116,7 +116,7 @@ export default function Products() {
           <div>
             <button
               onClick={navigateToSuggestionPage}
-              className="bg-[#4d9a1d] md:px-5 md:py-1 text-white rounded-lg whitespace-nowrap font-medium md:text-[24px]"
+              className="bg-[#4d9a1d] px-5 md:py-2 max-[500px]:py-3  text-white rounded-lg whitespace-nowrap font-medium md:text-[24px]"
             >
               Add product
             </button>

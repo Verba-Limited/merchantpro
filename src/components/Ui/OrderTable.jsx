@@ -28,7 +28,7 @@ export default function OrderTable({ data }) {
                   />
                   <span>{row.distributor}</span>
                 </td>
-                <td className=" px-5 py-3">{row.date}</td>
+                <td className=" px-5 py-3 whitespace-nowrap">{row.date}</td>
                 <td className=" px-5 py-3">{row.product}</td>
                 <td className=" px-5 py-3">{row.qty}</td>
                 <td className=" px-5 py-3">{row.prize}</td>
