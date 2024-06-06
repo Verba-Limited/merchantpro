@@ -32,11 +32,11 @@ export default function Settings() {
     tin: "",
     rcNumber: "",
     businessEmail: "",
-    country: "",
+    // country: "",
     businessNumber: "",
     state: "",
     localGovernment: "",
-    selectedCountry: "",
+    // selectedCountry: "",
   });
 
   const [file, setFile] = useState(null);
@@ -128,8 +128,8 @@ export default function Settings() {
 
   return (
     <>
-      <div className="container px-10">
-        <div className="flex relative space-x-20 mt-2">
+      <div className="md:container md:px-10">
+        <div className="md:flex relative md:space-x-20 mt-2">
           <button
             className={`transform ease-in-out duration-500 delay-100 cursor-pointer px-[10px] py-[5px] ${
               activeTab === "profile"
@@ -164,7 +164,7 @@ export default function Settings() {
         </div>
 
         {activeTab === "profile" && (
-          <div>
+          <div className="p-3">
             <div className="flex justify-end">
               <p className="font-bold text-2xl text-[#234A75]">
                 Step {formStep} of 3
@@ -282,7 +282,7 @@ export default function Settings() {
                     />
                   </div>
 
-                  <div className="flex justify-end">
+                  <div className="flex md:justify-end">
                     <ToastContainer />
                     <button
                       type="button"

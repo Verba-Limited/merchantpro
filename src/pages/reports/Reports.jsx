@@ -7,8 +7,8 @@ import OrderTable from "../../components/Ui/OrderTable";
 export default function Reports() {
   return (
     <>
-      <div className="container md:space-y-10">
-        <div className="flex justify-between pt-4 p-3">
+      <div className="md:container md:space-y-10 p-2">
+        <div className="flex md:justify-between pt-4 md:p-3 max-[500px]:grid max-[500px]:grid-cols-2 gap-4">
           {orderItems.map((items, index) => (
             <div
               key={index}
@@ -57,10 +57,10 @@ export default function Reports() {
           </div>
         </div>
 
-        <div className="mb-3 border border-gray-300  p-4">
+        <div className="mb-3 border border-gray-300 hidden md:block md:p-4">
           <div className="flex justify-between items-center">
             <div className="flex space-x-24 items-center">
-              <div className=" w-2/5 row">
+              <div className=" md:w-2/5 w-full row">
                 <label className=" text-[17px] font-normal text-black">
                   Status
                 </label>
@@ -77,15 +77,15 @@ export default function Reports() {
                 </h1>
                 <div className="flex space-x-3 border-2 border-gray-300 px-4 py-1">
                   <div className="flex items-center space-x-3">
-                    <p>Start Date</p>
+                    <p className="whitespace-nowrap">Start Date</p>
                     <img src={Assets.divide} alt="" />
-                    <p>End Date</p>
+                    <p className="whitespace-nowrap">End Date</p>
                     <img src={Assets.date} alt="" />
                   </div>
                 </div>
               </div>
             </div>
-            <div className="">
+            <div className="hidden md:flex mt-4">
               <button className="bg-[#4d9a1d] px-5 py-2 text-white rounded-lg font-normal text-xl">
                 Download
               </button>
@@ -169,7 +169,7 @@ export default function Reports() {
           </div>
         </div>
 
-        <div className="mb-3 border border-gray-300  p-4">
+        <div className="mb-3 border border-gray-300  p-4 hidden md:block">
           <div className="flex justify-between items-center">
             <div className="flex space-x-24 items-center">
               <div className=" w-2/5 row">
@@ -198,7 +198,7 @@ export default function Reports() {
               </div>
             </div>
             <div className="">
-              <button className="bg-[#4d9a1d] px-5 py-2 text-white rounded-lg font-normal text-xl">
+              <button className="bg-[#4d9a1d] px-5 py-2 text-white rounded-lg font-normal text-xl mt-3">
                 Download
               </button>
             </div>
