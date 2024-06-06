@@ -27,7 +27,7 @@ export default function Reports() {
           ))}
         </div>
 
-        <div className="border border-gray-300  p-4">
+        <div className="border border-gray-300 mt-4 p-2 md:p-4">
           <div>
             <h2 className="text-[24px] text-[#414D55] font-bold mb-4 font-[inter]">
               Daily Sales
@@ -37,7 +37,7 @@ export default function Reports() {
             <div className="flex justify-between w-full">
               {salesData.map((data) => (
                 <div key={data.day} className="flex flex-col items-center">
-                  <div className="relative h-56 w-[2rem] bg-gray-200 rounded-xl overflow-hidden">
+                  <div className="relative h-56 w-[1.4rem] bg-gray-200 rounded-xl overflow-hidden">
                     <div
                       className="absolute bottom-0 w-full bg-blue-600 rounded-lg"
                       style={{ height: `${data.value}%` }}
