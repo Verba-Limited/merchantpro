@@ -6,7 +6,7 @@ export default function Topbar({ pageName, toggleslider }) {
     <>
       {/* Mobile view */}
       <div className="md:hidden block">
-        <div className="py-4 sticky z-50 top-0 inset-0 md:px-0 bg-[#FFF] md:flex flex-col md:justify-between md:flex-row items-center  md:border-b  md:gap-5 ">
+        <div className="py-4 sticky top-0 inset-0 md:px-0 bg-[#FFF] md:flex flex-col md:justify-between md:flex-row items-center  md:border-b  md:gap-5 ">
           <div className="flex items-center w-100">
             <button
               className="p-1 max-[500px]:flex hidden"
