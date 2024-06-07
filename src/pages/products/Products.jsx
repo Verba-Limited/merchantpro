@@ -44,7 +44,7 @@ export default function Products() {
         <div className="">
           <div className="flex justify-between md:p-5 p-6">
             <img src={Assets.emzorlogo} alt="emzor-logo" />
-            <div className="hidden md:block md-plus:hidden">
+            <div className="hidden md:block ">
               <button className="text-white bg-[#4196bc] py-3 px-5 rounded-md">
                 Edit Profile
               </button>
@@ -53,8 +53,8 @@ export default function Products() {
         </div>
       </div>
 
-      <div className="md:flex p-2 md:p-4 md-plus:space-x-0 md:space-x-44 max-[450px]:space-y-4 mt-3">
-        <h1 className="text-[#234A75] md:text-[36px] text-2xl md-plus:text-2xl font-medium max-[450px]:mt-5">
+      <div className="md:flex p-2 md:p-4  md:space-x-44 max-[450px]:space-y-4 mt-3">
+        <h1 className="text-[#234A75] md:text-[36px] text-2xl  font-medium max-[450px]:mt-5">
           Emzor Pharmaceuticals
         </h1>
         <div className="flex space-x-10 items-center mr-24">
@@ -72,7 +72,7 @@ export default function Products() {
       </div>
 
       <div className=" mt-3">
-        <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-3 md:items-center md-plus:grid md-plus:grid-cols-2 md:space-x-16 md-plus:space-x-0 md:p-4 p-2">
+        <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-3 md:items-center  md:space-x-16  md:p-4 p-2">
           <FormControl variant="outlined" className="w-48 max-[500px]:w-[100%]">
             <InputLabel>Product Category</InputLabel>
             <Select
@@ -125,7 +125,7 @@ export default function Products() {
       </div>
       <div className="">
         <div className="pt-5">
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-6 md-plus:grid md-plus:grid-cols-2">
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-6 ">
             {products.map((product, index) => (
               <ProductItems key={index} />
             ))}

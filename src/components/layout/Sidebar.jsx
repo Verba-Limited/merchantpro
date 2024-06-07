@@ -37,7 +37,7 @@ export default function Sidebar({ isOpen, closeSidebar }) {
       <aside
         className={`fixed inset-y-0 left-0 z-50 transform md:hidden block ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:relative md:translate-x-0 transition-transform duration-200 ease-in-out`}
+        } md:relative md:translate-x-0 transition-transform duration-500 delay-75 ease-in-out`}
         style={{
           maxWidth: "240px",
           width: "100%",

@@ -17,7 +17,7 @@ export default function Orders() {
 
   return (
     <div className="container md:space-y-4">
-      <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-4 md:p-3 md-plus:grid md-plus:grid-cols-2">
+      <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-4 md:p-3 ">
         {orderItems.map((items, index) => (
           <div
             key={index}
@@ -36,7 +36,7 @@ export default function Orders() {
         ))}
       </div>
       <div className="flex max-[500px]:flex-col justify-between items-center md:p-3">
-        <div className="flex items-center  space-x-5 max-[500px]:grid max-[500px]:grid-cols-2 gap-5 md-plus:grid md-plus:grid-cols-2">
+        <div className="flex items-center  space-x-5 max-[500px]:grid max-[500px]:grid-cols-2 gap-5 ">
           <div className="flex flex-col">
             <label className=" text-gray-700">Merchant</label>
             <select
