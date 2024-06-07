@@ -3,7 +3,7 @@ import Assets from "../../constants/Assets";
 import { Table } from "react-bootstrap";
 import BarChart from "../../components/layout/BarChart";
 import { Link } from "react-router-dom";
-import { orders, partners } from "../../data";
+import { orderItems, orders, partners } from "../../data";
 import Pagination from "../../components/Ui/Pagination";
 export default function Dashboard() {
   return (
@@ -20,101 +20,23 @@ export default function Dashboard() {
               </button>
             </Link>
           </div>
-          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-              <div class="card-body p-3">
-                <div class="row">
-                  <div class="col-8">
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                        Today's Order
-                      </p>
-                      <h5 class="font-weight-bolder">N53,000</h5>
-                    </div>
-                  </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                      <i
-                        class="ni ni-money-coins text-lg opacity-10"
-                        aria-hidden="true"
-                      ></i>
-                    </div>
-                  </div>
+          <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-4 md:p-3 md-plus:grid md-plus:grid-cols-2">
+            {orderItems.map((items, index) => (
+              <div
+                key={index}
+                className="flex bg-[#f3f8fb] max-[500px]:px-8 p-3 space-x-10 rounded"
+              >
+                <div>
+                  <h1 className="text-[#A0AEC0] text-[12px] font-bold">
+                    {items.status}
+                  </h1>
+                  <p className="text-[#2D3748] text-[18px] font-bold">
+                    {items.price}
+                  </p>
                 </div>
+                <img src={items.img} alt="" />
               </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-              <div class="card-body p-3">
-                <div class="row">
-                  <div class="col-8">
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                        Today's Users
-                      </p>
-                      <h5 class="font-weight-bolder">2,300</h5>
-                    </div>
-                  </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                      <i
-                        class="ni ni-world text-lg opacity-10"
-                        aria-hidden="true"
-                      ></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-              <div class="card-body p-3">
-                <div class="row">
-                  <div class="col-8">
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                        Partners
-                      </p>
-                      <h5 class="font-weight-bolder">+3,462</h5>
-                    </div>
-                  </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                      <i
-                        class="ni ni-paper-diploma text-lg opacity-10"
-                        aria-hidden="true"
-                      ></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6">
-            <div class="card">
-              <div class="card-body p-3">
-                <div class="row">
-                  <div class="col-8">
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                        Sales
-                      </p>
-                      <h5 class="font-weight-bolder">$103,430</h5>
-                    </div>
-                  </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                      <i
-                        class="ni ni-cart text-lg opacity-10"
-                        aria-hidden="true"
-                      ></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className="bg-white shadow-sm rounded-md mt-16 md:p-5 p-3">
