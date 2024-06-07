@@ -129,7 +129,7 @@ export default function Settings() {
   return (
     <>
       <div className="md:container md:px-10">
-        <div className="md:flex relative md:space-x-20 mt-2">
+        <div className="md:flex space-x-3 relative md:space-x-20 mt-2">
           <button
             className={`transform ease-in-out duration-500 delay-100 cursor-pointer px-[10px] py-[5px] ${
               activeTab === "profile"
@@ -388,7 +388,7 @@ export default function Settings() {
                     </div>
                   </div>
 
-                  <div className="mb-20 flex justify-between items-center">
+                  <div className="mb-20 flex justify-between items-center space-x-4 sm-plus:mt-5">
                     <button
                       onClick={handlePrev}
                       type="button"
@@ -396,8 +396,8 @@ export default function Settings() {
                     >
                       Previous
                     </button>
-                    <div className="text-[20px]">
-                      Skip to your{" "}
+                    <div className="md:text-[20px]">
+                      <p className="whitespace-nowrap"> Skip to your </p>
                       <Link to={"/dashboard"} className="text-[#4D9A1D]">
                         Dashboard
                       </Link>
@@ -414,41 +414,39 @@ export default function Settings() {
               )}
 
               {formStep === 3 && (
-                <div className="mt-4 md:space-y-6">
-                  <div className="flex space-x-14 w-full ">
+                <div className="mt-4 space-y-6">
+                  <div className="flex max-[500px]:grid max-[500px]:grid-cols-1 md:space-x-14 w-full space-y-4">
                     <label
                       htmlFor="file-upload"
                       className="flex flex-col items-center w-full py-4 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-400"
                     >
-                      <div className="">
-                        <div className="flex space-x-10 items-center">
-                          <div className="flex flex-col items-center md:space-y-3">
-                            <img src={Assets.uploadIcon} alt="uplaod icon" />
+                      <div className="flex space-x-10 items-center">
+                        <div className="flex flex-col items-center md:space-y-3">
+                          <img src={Assets.uploadIcon} alt="uplaod icon" />
 
-                            <button
-                              onClick={handleUpload}
-                              typeof="file"
-                              className="text-nowrap text-white bg-[#234a75] py-3 px-5 rounded-lg"
-                            >
-                              Browse file
-                            </button>
+                          <button
+                            onClick={handleUpload}
+                            typeof="file"
+                            className="text-nowrap text-white bg-[#234a75] py-3 px-5 rounded-lg"
+                          >
+                            Browse file
+                          </button>
+                        </div>
+
+                        <div className="flex flex-col space-y-2 p-1">
+                          <div>
+                            <p className="text-sm text-gray-500">
+                              <span className="font-semibold">
+                                Drag & Drop file here <br /> or browse your
+                                device
+                              </span>
+                            </p>
                           </div>
-
-                          <div className="flex flex-col space-y-2 p-1">
-                            <div>
-                              <p className="text-sm text-gray-500">
-                                <span className="font-semibold">
-                                  Drag & Drop file here <br /> or browse your
-                                  device
-                                </span>
-                              </p>
-                            </div>
-                            <div className="">
-                              <p className="text-xs text-gray-500 ">
-                                Allowed Documents: jpg, <br /> png, tiff, pdf -
-                                5MB maximum <br /> file size.
-                              </p>
-                            </div>
+                          <div className="">
+                            <p className="text-xs text-gray-500 ">
+                              Allowed Documents: jpg, <br /> png, tiff, pdf -
+                              5MB maximum <br /> file size.
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -530,7 +528,7 @@ export default function Settings() {
                     </div>
                   </div>
 
-                  <div className=" flex justify-between items-center">
+                  <div className=" flex justify-between items-center space-x-4">
                     <button
                       onClick={handlePrev}
                       type="button"
@@ -538,8 +536,8 @@ export default function Settings() {
                     >
                       Previous
                     </button>
-                    <div className="text-[20px]">
-                      Skip to your{" "}
+                    <div className="md:text-[20px]">
+                      <p className="whitespace-nowrap"> Skip to your </p>
                       <Link to={"/dashboard"} className="text-[#4D9A1D]">
                         Dashboard
                       </Link>
@@ -592,7 +590,7 @@ export default function Settings() {
         {activeTab === "updatePassword" && (
           <>
             <div>
-              <div className="pt-5">
+              <div className="pt-5 p-3">
                 {!codeConfirmed ? (
                   <EmailCode onCodeConfirm={handleConfirmed} />
                 ) : (

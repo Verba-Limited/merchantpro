@@ -30,7 +30,7 @@ export default function EmailCode({ onCodeConfirm }) {
             <input
               key={index}
               type="password"
-              className="border-2 border-gray-500 w-14 h-14 rounded-md p-3 outline-none"
+              className="border-2 border-gray-500 w-14 h-14 max-[500px]:w-10 max-[500px]:h-10 rounded-md p-3 outline-none"
               value={digit}
               onChange={(e) => handleChange(e.target.value, index)}
               maxLength={1}
