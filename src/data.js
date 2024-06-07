@@ -339,3 +339,52 @@ export const faqs = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
 ];
+
+export const documents = [
+  {
+    title: "Certificate of incorporation ",
+    text: "Upload file",
+  },
+  {
+    title: "Copy of certificate of Memorandom ",
+    text: "Upload file",
+  },
+  {
+    title: "Copy of form Co7 or CAC 2.3 (Particulars of Director) CAC 1.1 ",
+    text: "Upload file",
+  },
+
+  {
+    title: "TIN  Certificate",
+    text: "Upload file",
+  },
+
+  {
+    title: "Board Resolution or Mandate letter ",
+    text: "Upload file",
+  },
+  {
+    title: "Valid means of ID ",
+    text: "Upload file",
+  },
+  {
+    title: "Evidence of business Address ",
+    text: "Upload file",
+  },
+  {
+    title: " Residence Permit ",
+    text: "Upload file",
+  },
+  {
+    title: " SCUML Certificate",
+    text: "Upload file",
+  },
+  {
+    title: "Draft Agreement",
+    text: "Upload file",
+  },
+  {
+    title: "AML Policy ",
+    text: "Upload file",
+  },
+];

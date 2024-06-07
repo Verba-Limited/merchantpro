@@ -8,7 +8,7 @@ export default function Reports() {
   return (
     <>
       <div className="md:container md:space-y-10 p-2">
-        <div className="flex md:justify-between pt-4 md:p-3 max-[500px]:grid max-[500px]:grid-cols-2 gap-4">
+        <div className="flex md:justify-between pt-4 md:p-3 max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md-plus:grid md-plus:grid-cols-2">
           {orderItems.map((items, index) => (
             <div
               key={index}
@@ -57,7 +57,7 @@ export default function Reports() {
           </div>
         </div>
 
-        <div className="mb-3 border border-gray-300 hidden md:block md:p-4">
+        <div className="mb-3 border border-gray-300 hidden md:block md:p-4 md-plus:hidden">
           <div className="flex justify-between items-center">
             <div className="flex space-x-24 items-center">
               <div className=" md:w-2/5 w-full row">
@@ -169,7 +169,7 @@ export default function Reports() {
           </div>
         </div>
 
-        <div className="mb-3 border border-gray-300  p-4 hidden md:block">
+        <div className="mb-3 border border-gray-300  p-4 hidden md:block md-plus:hidden">
           <div className="flex justify-between items-center">
             <div className="flex space-x-24 items-center">
               <div className=" w-2/5 row">

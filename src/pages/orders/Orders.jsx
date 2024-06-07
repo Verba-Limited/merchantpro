@@ -1,23 +1,12 @@
 import React, { useState } from "react";
 import Assets from "../../constants/Assets";
 import { orderItems, drugs, merchants, dates, statuses } from "../../data";
-import {
-  TextField,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
-} from "@mui/material";
 
 export default function Orders() {
   const [selectedMerchant, setSelectedMerchant] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedDate, setSelectedDate] = useState("today");
-  const [category, setCategory] = React.useState("");
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
   const myStyle = {
     backgroundImage: `url(${Assets.ads})`,
     backgroundPosition: "center",
@@ -28,7 +17,7 @@ export default function Orders() {
 
   return (
     <div className="container md:space-y-4">
-      <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-4 md:p-3">
+      <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-4 md:p-3 md-plus:grid md-plus:grid-cols-2">
         {orderItems.map((items, index) => (
           <div
             key={index}
@@ -47,7 +36,7 @@ export default function Orders() {
         ))}
       </div>
       <div className="flex max-[500px]:flex-col justify-between items-center md:p-3">
-        <div className="flex items-center  space-x-5 max-[500px]:grid max-[500px]:grid-cols-2 gap-5">
+        <div className="flex items-center  space-x-5 max-[500px]:grid max-[500px]:grid-cols-2 gap-5 md-plus:grid md-plus:grid-cols-2">
           <div className="flex flex-col">
             <label className=" text-gray-700">Merchant</label>
             <select

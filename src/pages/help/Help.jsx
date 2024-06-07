@@ -17,12 +17,12 @@ export default function Help() {
             When merchant have issues they create a new ticket
           </h1>
 
-          <div className="gap-4">
+          <div className="gap-4 md-plus:gap-0">
             <div className="border border-[#747C88] p-5">
-              <div className="flex flex-col">
-                <div className="flex space-x-28">
+              <div className="flex flex-col md-plus:grid md-plus:grid-cols-1">
+                <div className="flex space-x-28 md-plus:space-x-4">
                   <div className="mb-3 w-2/5 row">
-                    <label className=" text-[17px] font-normal text-black">
+                    <label className=" text-[17px] font-normal text-black whitespace-nowrap">
                       Merchant Name
                     </label>
                     <input
@@ -35,7 +35,7 @@ export default function Help() {
                     />
                   </div>
                   <div className="mb-3 w-2/5 row">
-                    <label className=" text-[17px] font-normal text-black">
+                    <label className=" text-[17px] font-normal text-black whitespace-nowrap">
                       Ticket ID
                     </label>
                     <input
@@ -48,7 +48,7 @@ export default function Help() {
                     />
                   </div>
                   <div className="mb-3 w-2/5 row">
-                    <label className=" text-[17px] font-normal text-black">
+                    <label className=" text-[17px] font-normal text-black whitespace-nowrap">
                       Select Request
                     </label>
                     <select className="py-3 bg-transparent border rounded-md border-[#d7dbde]">
@@ -117,6 +117,7 @@ export default function Help() {
         </div>
       </div>
 
+      {/* Mobile View */}
       <div className="container mx-auto px-4 md:hidden block">
         <div className="mt-3 space-y-7">
           <h1 className="text-[#747C88] font-normal text-[18px]">
