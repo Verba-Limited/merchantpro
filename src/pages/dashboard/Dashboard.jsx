@@ -20,7 +20,7 @@ export default function Dashboard() {
               </button>
             </Link>
           </div>
-          <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-4 md:p-3 md-plus:grid md-plus:grid-cols-2">
+          <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-4 md:p-3">
             {orderItems.map((items, index) => (
               <div
                 key={index}

@@ -392,11 +392,11 @@ export default function Settings() {
                     <button
                       onClick={handlePrev}
                       type="button"
-                      className="px-5 py-3 border-2 border-[#81919B] text-[#81919B] rounded-xl"
+                      className="px-4 py-3 border-2 border-[#81919B] text-[#81919B] rounded-xl"
                     >
                       Previous
                     </button>
-                    <div className="md:text-[20px]">
+                    <div className="md:text-[20px] md:flex items-center">
                       <p className="whitespace-nowrap"> Skip to your </p>
                       <Link to={"/dashboard"} className="text-[#4D9A1D]">
                         Dashboard
@@ -532,11 +532,11 @@ export default function Settings() {
                     <button
                       onClick={handlePrev}
                       type="button"
-                      className="px-5 py-3 border-2 border-[#81919B] text-[#81919B] rounded-xl"
+                      className="px-4 py-3 border-2 border-[#81919B] text-[#81919B] rounded-xl"
                     >
                       Previous
                     </button>
-                    <div className="md:text-[20px]">
+                    <div className="md:text-[20px] md:flex items-center">
                       <p className="whitespace-nowrap"> Skip to your </p>
                       <Link to={"/dashboard"} className="text-[#4D9A1D]">
                         Dashboard

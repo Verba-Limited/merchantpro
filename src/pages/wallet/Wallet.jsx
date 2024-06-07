@@ -7,7 +7,7 @@ export default function Wallet() {
     <>
       <div className="md:container md:space-y-7 md:px-6">
         <div className="md:px-4 w-full pt-4">
-          <div className="flex justify-between max-[500px]:flex-col md-plus:flex-col p-3 items-center md:h-[30vh] bg-[#f3f8fb] rounded-xl w-full max-[500px]:space-y-3">
+          <div className="flex justify-between max-[500px]:flex-col  p-3 items-center md:h-[30vh] bg-[#f3f8fb] rounded-xl w-full max-[500px]:space-y-3">
             <div className="max-[500px]:mr-[12rem]">
               <span className="text-[#353F4D] font-normal italic md:text-[20px] text-xl">
                 #123756
