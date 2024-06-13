@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Assets from "../../constants/Assets";
 import { Table } from "react-bootstrap";
 import BarChart from "../../components/layout/BarChart";
@@ -6,21 +6,33 @@ import { Link } from "react-router-dom";
 import { orderItems, orders, partners } from "../../data";
 import Pagination from "../../components/Ui/Pagination";
 export default function Dashboard() {
+  const [showDropdown, setShowDropdown] = useState(
+    Array(orders.length).fill(false)
+  );
+
+  const toggleDropdown = (index) => {
+    setShowDropdown((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+
   return (
     <div>
       <div class="container-fluid py-4">
-        <div class="row">
-          <div className="d-flex justify-content-end mb-4">
+        <div class="flex flex-col">
+          <div className="flex justify-end mb-2">
             <Link to="/settings">
-              <button className="bg-[#f28f1e] text-white px-7 rounded-xl py-2 flex space-x-5 items-center max-[500px]:px-6">
-                <div className="rounded-full bg-[#f5a445] p-3 ">
+              <button className="flex items-center justify-between px-5 py-2 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                <div className="flex items-center justify-center w-[50px] h-[50px] bg-[#f5a445] rounded-full mr-10">
                   <img src={Assets.icons} alt="" width={30} height={30} />
                 </div>
-                <span className="whitespace-nowrap"> Complete your KYC</span>
+                <span className="mr-10">Complete your KYC</span>
               </button>
             </Link>
           </div>
-          <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-4 md:p-3">
+          <div className="flex max-[500px]:grid max-[500px]:grid-cols-2 gap-4 md:justify-between pt-2 md:p-3">
             {orderItems.map((items, index) => (
               <div
                 key={index}
@@ -81,7 +93,30 @@ export default function Dashboard() {
                           </span>
                         </td>
                         <td>
-                          <img src={Assets.action} alt="" />
+                          <div className="relative inline-block">
+                            <button
+                              className="relative z-10"
+                              onClick={() => toggleDropdown(index)}
+                            >
+                              <img src={Assets.action} alt="" />
+                            </button>
+                            {showDropdown[index] && (
+                              <div className="absolute right-3  bg-[#FFF]  shadow-md z-50 w-[110px] p-3 space-y-3">
+                                <p
+                                  className="cursor-pointer hover:bg-gray-100 whitespace-nowrap flex space-x-3"
+                                  onClick={() => console.log("Remove User")}
+                                >
+                                  <span>Edit</span>
+                                </p>
+                                <p
+                                  className="cursor-pointer hover:bg-gray-100 whitespace-nowrap flex space-x-3 items-center"
+                                  onClick={() => console.log("Make Admin")}
+                                >
+                                  <span>Delete</span>
+                                </p>
+                              </div>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -93,29 +128,21 @@ export default function Dashboard() {
 
             <div className="bg-white shadow-sm rounded-md mt-16 border2">
               <div className="md:flex md:justify-between p-5 gx-5">
-                <div className="col-lg-5 ">
+                <div className="col-lg-5">
                   <div>
                     <h1 className="fs-3 fw-normal text-black">Top Partner</h1>
                   </div>
-
-                  <div class="table-responsive">
+                  <div className="table-responsive">
                     <Table responsive>
                       <thead>
                         <tr className="fs-5">
-                          <th className="fs-6">
-                            {" "}
-                            <img
-                              src={Assets.pinky}
-                              alt="Company Logo"
-                              className="me-2"
-                            />
-                          </th>
-                          <th className="fs-6">20,000</th>
-                          <th className="fs-6">View Details</th>
+                          <th className="fs-6">Company</th>
+                          <th className="fs-6">Revenue</th>
+                          <th className="fs-6">Details</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {partners.map((order, index) => (
+                        {partners.map((partner, index) => (
                           <tr key={index}>
                             <td>
                               <img
@@ -123,16 +150,15 @@ export default function Dashboard() {
                                 alt="Company Logo"
                                 className="me-2"
                               />
-                              {/* {order.company} */}
-                            </td>{" "}
-                            <td>{order.number}</td>
-                            <td>{order.details}</td>
+                            </td>
+                            <td className="fs-6">{partner.number}</td>
+                            <td className="fs-6">{partner.details}</td>
                           </tr>
                         ))}
                       </tbody>
                     </Table>
                     <div className="mt-4">
-                      <div className="flex ">
+                      <div className="flex items-center">
                         <button className="text-gray-500 hover:text-gray-700 hidden md:flex">
                           Previous
                         </button>
@@ -153,9 +179,8 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
-
-                <div className="col-lg-5  ">
-                  <div className=" mt-7">
+                <div className="col-lg-5">
+                  <div className="mt-7">
                     <img src={Assets.health} alt="" />
                   </div>
                 </div>
