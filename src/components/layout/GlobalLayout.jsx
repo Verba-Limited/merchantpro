@@ -9,7 +9,7 @@ export default function GlobalLayout() {
   const location = useLocation();
 
   const pathToPageName = {
-    "/dashboard": "Hey Jane,Good afternoon",
+    "/dashboard": "Hey Jane, Good afternoon",
     "/profile": "Merchant's Details",
     "/orders": "Orders",
     "/products": " Products",
