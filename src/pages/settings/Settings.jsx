@@ -9,10 +9,36 @@ import EmailCode from "../../components/layout/EmailCode";
 import AddNewPassword from "../../components/layout/AddNewPassword";
 import Select from "react-select";
 import axios from "axios";
+import { stateData, localGovtData } from "../../data";
 
 export default function Settings() {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState({});
+
+  const [selectedState, setSelectedState] = useState(null);
+  const [selectedLga, setSelectedLga] = useState(null);
+
+  const handleStateChange = (selectedOption) => {
+    setSelectedState(selectedOption);
+    setSelectedLga(null); // Reset LGA selection when state changes
+  };
+
+  const handleLgaChange = (selectedOption) => {
+    setSelectedLga(selectedOption);
+  };
+
+  // Transforming data for React Select
+  const stateOptions = Object.keys(localGovtData).map((state) => ({
+    value: state,
+    label: state,
+  }));
+
+  const lgaOptions = selectedState
+    ? localGovtData[selectedState.value].map((lga) => ({
+        value: lga,
+        label: lga,
+      }))
+    : [];
 
   useEffect(() => {
     axios
@@ -254,15 +280,11 @@ export default function Settings() {
                       <label className=" text-[17px] font-normal text-black">
                         State
                       </label>
-                      <input
-                        type="text"
-                        className="form-control form-control-lg"
-                        placeholder="Enter"
-                        aria-label="RC Number"
-                        name="state"
-                        value={formData.state}
-                        onChange={handleChange}
-                        required
+                      <Select
+                        value={selectedState}
+                        className="form-control form-control-lg outline-none"
+                        onChange={handleStateChange}
+                        options={stateOptions}
                       />
                     </div>
                   </div>
@@ -270,15 +292,13 @@ export default function Settings() {
                     <label className="text-[17px] font-normal text-black">
                       Local Government
                     </label>
-                    <input
-                      type="text"
-                      className="form-control form-control-lg"
-                      placeholder="Phone Number"
-                      aria-label="TIN"
-                      name="localGovernment"
-                      value={formData.localGovernment}
-                      onChange={handleChange}
-                      required
+
+                    <Select
+                      value={selectedLga}
+                      className="form-control form-control-lg outline-none"
+                      onChange={handleLgaChange}
+                      options={lgaOptions}
+                      isDisabled={!selectedState}
                     />
                   </div>
 

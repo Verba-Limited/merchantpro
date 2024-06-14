@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { orderItems, salesData, drugs } from "../../data";
 import Assets from "../../constants/Assets";
 import { orderTable } from "../../data";
 import OrderTable from "../../components/Ui/OrderTable";
 
 export default function Reports() {
+  const [showDropdown, setShowDropdown] = useState(
+    Array(orderTable.length).fill(false)
+  );
+
+  const toggleDropdown = (index) => {
+    setShowDropdown((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
   return (
     <>
       <div className="md:container md:space-y-10 p-2">
@@ -148,7 +159,30 @@ export default function Reports() {
                     {item.status}
                   </td>
                   <td className="py-4 px-4 border-b">
-                    <img src={Assets.dots} alt="" />
+                    <div className="relative inline-block">
+                      <button
+                        className="relative z-10"
+                        onClick={() => toggleDropdown(index)}
+                      >
+                        <img src={Assets.action} alt="" />
+                      </button>
+                      {showDropdown[index] && (
+                        <div className="absolute right-3  bg-[#FFF]  shadow-md z-50 w-[110px] p-3 space-y-3">
+                          <p
+                            className="cursor-pointer hover:bg-gray-100 whitespace-nowrap flex space-x-3"
+                            onClick={() => console.log("Remove User")}
+                          >
+                            <span>Edit</span>
+                          </p>
+                          <p
+                            className="cursor-pointer hover:bg-gray-100 whitespace-nowrap flex space-x-3 items-center"
+                            onClick={() => console.log("Make Admin")}
+                          >
+                            <span>Delete</span>
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))}

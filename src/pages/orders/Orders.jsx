@@ -6,6 +6,17 @@ export default function Orders() {
   const [selectedMerchant, setSelectedMerchant] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedDate, setSelectedDate] = useState("today");
+  const [showDropdown, setShowDropdown] = useState(
+    Array(drugs.length).fill(false)
+  );
+
+  const toggleDropdown = (index) => {
+    setShowDropdown((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
 
   const myStyle = {
     backgroundImage: `url(${Assets.ads})`,
@@ -83,23 +94,35 @@ export default function Orders() {
           </div>
 
           <div className="mt-4">
-            <button className="flex items-center px-3 space-x-2 bg-[#234a75] text-white rounded">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="white"
-                className="w-15 h-11"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                />
-              </svg>
-              <p>search</p>
-            </button>
+            <div className="flex items-center space-x-2 relative">
+              <div className="absolute">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-4.35-4.35"
+                  />
+                </svg>
+              </div>
+              <input
+                type="text"
+                placeholder=" Search "
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+              />
+            </div>
           </div>
         </div>
 
@@ -179,7 +202,30 @@ export default function Orders() {
                   {item.status}
                 </td>
                 <td className="py-4 px-4 border-b">
-                  <img src={Assets.dots} alt="" />
+                  <div className="relative inline-block">
+                    <button
+                      className="relative z-10"
+                      onClick={() => toggleDropdown(index)}
+                    >
+                      <img src={Assets.action} alt="" />
+                    </button>
+                    {showDropdown[index] && (
+                      <div className="absolute right-3  bg-[#FFF]  shadow-md z-50 w-[110px] p-3 space-y-3">
+                        <p
+                          className="cursor-pointer hover:bg-gray-100 whitespace-nowrap flex space-x-3"
+                          onClick={() => console.log("Remove User")}
+                        >
+                          <span>Edit</span>
+                        </p>
+                        <p
+                          className="cursor-pointer hover:bg-gray-100 whitespace-nowrap flex space-x-3 items-center"
+                          onClick={() => console.log("Make Admin")}
+                        >
+                          <span>Delete</span>
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}
