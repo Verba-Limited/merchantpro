@@ -51,41 +51,39 @@ export default function Profile() {
             <div className="p-6 flex max-[500px]:flex-col gap-5 justify-evenly ">
               <div className="flex flex-col space-y-6">
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">Email</h1>
+                  <h1 className="text-[#353F4D] font-bold text-xl">Email</h1>
                   <p>Tunde.Orioza@gmail.com</p>
                 </div>
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">
-                    Username
-                  </h1>
+                  <h1 className="text-[#353F4D] font-bold text-xl">Username</h1>
                   <p>Ezeja</p>
                 </div>
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">
+                  <h1 className="text-[#353F4D] font-bold text-xl">
                     Documents
                   </h1>
-                  <div className="flex items-center">
+                  <div className="flex items-center space-x-4">
                     <p className="text-[#4d9a1d] text-base">Verified</p>
-                    <button className="text-white bg-[#234A75]  px-2 p-1  rounded-md">
+                    <button className="text-white bg-[#234A75]  px-2  rounded-md">
                       Edit
                     </button>
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">
+                  <h1 className="text-[#353F4D] font-bold text-xl">
                     Total Sales
                   </h1>
                   <p>10,000</p>
                 </div>
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">
+                  <h1 className="text-[#353F4D] font-bold text-xl">
                     Payment Type
                   </h1>
                   <p>Margin</p>
                 </div>
 
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">
+                  <h1 className="text-[#353F4D] font-bold text-xl">
                     Business Category
                   </h1>
                   <p>Ltd Liablity</p>
@@ -93,37 +91,37 @@ export default function Profile() {
               </div>
               <div className="flex flex-col space-y-6">
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">Phone</h1>
+                  <h1 className="text-[#353F4D] font-bold text-xl">Phone</h1>
                   <p>07044290256</p>
                 </div>
 
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">
+                  <h1 className="text-[#353F4D] font-bold text-xl">
                     Wallet ID
                   </h1>
                   <p>234500</p>
                 </div>
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">
+                  <h1 className="text-[#353F4D] font-bold text-xl">
                     Last Seen
                   </h1>
                   <p>10 hours ago</p>
                 </div>
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">
+                  <h1 className="text-[#353F4D] font-bold text-xl">
                     Total Volume
                   </h1>
                   <p>N200,000</p>
                 </div>
 
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">
+                  <h1 className="text-[#353F4D] font-bold text-xl">
                     Total Volume
                   </h1>
                   <p>N200,000</p>
                 </div>
                 <div>
-                  <h1 className="text-[#353F4D] font-bold text-2xl">Status</h1>
+                  <h1 className="text-[#353F4D] font-bold text-xl">Status</h1>
                   <p>Active</p>
                 </div>
               </div>

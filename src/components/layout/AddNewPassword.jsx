@@ -70,7 +70,6 @@ export default function AddNewPassword() {
                 placeholder="Enter your Password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                required
               />
               <span
                 className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
@@ -98,7 +97,6 @@ export default function AddNewPassword() {
                 placeholder="Enter your Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                required
               />
               <span
                 className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
@@ -124,10 +122,6 @@ export default function AddNewPassword() {
             </button>
           </div>
         </form>
-
-        <button className="mt-4 font-semibold text-[14px] text-[#353F4D] hover:underline">
-          Forgot password?
-        </button>
       </div>
       {openModal && <ResetModal onClose={handlePasswordResetModal} />}
     </>

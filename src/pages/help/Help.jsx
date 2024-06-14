@@ -88,7 +88,7 @@ export default function Help() {
               </div>
             </div>
             <div className=" w-full ">
-              <div className="max-w-md border border-[#747C88] p-3">
+              <div className=" border border-[#747C88] p-3 h-full">
                 <h2 className="text-2xl font-bold mb-4">FAQ</h2>
                 {faqs.map((faq, index) => (
                   <div
@@ -194,31 +194,26 @@ export default function Help() {
                 </div>
               </div>
             </div>
-            <div className="w-full sm:w-1/2">
-              <div className="max-w-md border border-[#747C88] p-3">
-                <h2 className="text-2xl font-bold mb-4">FAQ</h2>
-                {faqs.map((faq, index) => (
-                  <div
-                    key={index}
-                    className="border border-gray-300 rounded-md"
+            <div className="w-full  border border-[#747C88] p-3">
+              <h2 className="text-2xl font-bold mb-4">FAQ</h2>
+              {faqs.map((faq, index) => (
+                <div key={index} className="border border-gray-300 rounded-md">
+                  <button
+                    className="w-full text-left px-4 py-2 focus:outline-none"
+                    onClick={() => handleItemClick(index)}
                   >
-                    <button
-                      className="w-full text-left px-4 py-2 focus:outline-none"
-                      onClick={() => handleItemClick(index)}
-                    >
-                      <div className="flex justify-between items-center">
-                        <span className="font-bold">{faq.question}</span>
-                        <span>{openIndex === index ? "▲" : "▼"}</span>
-                      </div>
-                    </button>
-                    {openIndex === index && (
-                      <div className="px-4 py-2 border-t border-gray-300 bg-gray-100">
-                        {faq.answer}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold">{faq.question}</span>
+                      <span>{openIndex === index ? "▲" : "▼"}</span>
+                    </div>
+                  </button>
+                  {openIndex === index && (
+                    <div className="px-4 py-2 border-t border-gray-300 bg-gray-100">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
