@@ -35,7 +35,6 @@ export default function Products() {
   };
 
   const navigateToSuggestionPage = () => {
-    console.log("Button clicked");
     navigate("/products/addProducts");
   };
   return (
