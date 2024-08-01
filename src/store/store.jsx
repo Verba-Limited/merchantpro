@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import AuthReducer from "./slice/authSlice";
 import { useDispatch } from "react-redux";
-
+import FormReducer from "./slice/formSlice";
 const store = configureStore({
   reducer: {
     auth: AuthReducer,
+    form: FormReducer,
   },
 });
 

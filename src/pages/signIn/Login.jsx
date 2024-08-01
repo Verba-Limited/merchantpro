@@ -1,73 +1,79 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../assets/css/argon-dashboard.css";
-
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess, authError } from "../../store/slice/authSlice";
 import businessbackground from "../../assets/img/businessman.png";
 import mplogo from "../../assets/img/mplogo.png";
 import frameservices from "../../assets/img/frameservices.png";
+import { $api } from "../../services";
+// import { setMessage } from "../../store/slice/formSlice";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const myStyle = {
     backgroundImage: `url(${businessbackground})`,
     backgroundSize: "cover",
   };
 
-  // const [message, setMessage] = useState("");
-  // const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(false);
 
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const [password, setPassword] = useState("");
   // const [token, setToken] = useState("");
   // const [userProfile, setUserProfile] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    try {
+      const response = await $api.post("/api/merchant/auth/login", {
+        email,
+        password,
+      });
 
-    navigate("/dashboard");
-    // try {
-    //   const parsedRequest = { email, password };
-    //   console.log(parsedRequest);
-    //   const response = await axios.post(
-    //     "http://localhost:5001/api/merchant/auth/login",
-    //     parsedRequest
-    //   );
-    //   console.log(response.data);
-    //   // Redirect or show success message
-    //   setError(false);
-    //   setMessage(response.data.message);
-    //   if (response.data.statusCode === 200) {
-    //     setToken(response.data.data.extra.token);
-    //     setUserProfile(response.data.data.info);
+      if ($api.isSuccessful(response)) {
+        const { token } = response.data.data.extra;
+        const user = response.data.data.info;
+        dispatch(loginSuccess({ token, user }));
 
-    //     localStorage.setItem("mpToken", response.data.data.extra.token);
-    //     localStorage.setItem(
-    //       "mpUserProfile",
-    //       JSON.stringify(response.data.data.info)
-    //     );
+        localStorage.setItem("mpToken", token);
+        localStorage.setItem("mpUserProfile", JSON.stringify(user));
+        toast.success("Login successful! Redirecting to dashboard...");
 
-    //     setTimeout(() => {
-    //       // 👇 Redirects to about page, note the `replace: true`
-    //       navigate("/dashboard", { replace: true });
-    //     }, 1500);
-    //   }
-    // } catch (error) {
-    //   console.error("Error:", error?.response?.data?.message);
-    //   // Handle error
-    //   setError(true);
-    //   setMessage(error?.response?.data?.message);
-    // }
+        setTimeout(() => {
+          navigate("/dashboard", { replace: true });
+        }, 2000);
+      } else {
+        setError(true);
+        setMessage(response.data.message);
+        dispatch(authError(response.data.message));
+      }
+    } catch (error) {
+      console.error("Error:", error?.response?.data?.message);
+      setError(true);
+      setMessage(error?.response?.data?.message);
+      dispatch(authError(error?.response?.data?.message));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // useEffect(() => {
   //   setTimeout(() => {
   //     // 👇 Redirects to about page, note the `replace: true`
-  //     navigate("/about", { replace: true });
-  //   }, 3000);
+  //     navigate("/register", { replace: true });
+  //   }, 7000);
   // }, []);
   return (
     <div>
+      <ToastContainer />
       <main className="main-content  mt-0">
         <section>
           <div className="page-header min-vh-100">
@@ -117,7 +123,7 @@ export default function Login() {
                       </p>
                     </div>
                     <div className="card-body">
-                      {/* {message && (
+                      {message && (
                         <div
                           className={
                             error
@@ -128,7 +134,7 @@ export default function Login() {
                         >
                           {message}
                         </div>
-                      )} */}
+                      )}
                       <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                           <input
@@ -179,8 +185,9 @@ export default function Login() {
                           <button
                             type="submit"
                             className="btn btn-lg btn-success btn-lg w-100 mt-4 mb-0"
+                            disabled={isLoading}
                           >
-                            Login
+                            {isLoading ? "Submitting..." : "Login"}
                           </button>
                         </div>
                       </form>
