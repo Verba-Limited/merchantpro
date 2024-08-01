@@ -187,7 +187,11 @@ export default function Login() {
                             className="btn btn-lg btn-success btn-lg w-100 mt-4 mb-0"
                             disabled={isLoading}
                           >
-                            {isLoading ? "Submitting..." : "Login"}
+                            {isLoading ? (
+                              <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+                            ) : (
+                              "Login"
+                            )}
                           </button>
                         </div>
                       </form>
