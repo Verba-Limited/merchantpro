@@ -3,13 +3,16 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 import { Outlet, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function GlobalLayout() {
   const [asideOpen, setAsideOpen] = useState(false);
   const location = useLocation();
+  const user = useSelector((state) => state.auth.user);
+  const userName = user ? user.firstName : "User";
 
   const pathToPageName = {
-    "/dashboard": "Hey Jane, Good afternoon",
+    "/dashboard": `Hey ${userName}, Good afternoon`,
     "/profile": "Merchant's Details",
     "/orders": "Orders",
     "/products": " Products",
