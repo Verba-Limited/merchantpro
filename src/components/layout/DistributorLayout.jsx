@@ -11,8 +11,19 @@ export default function GlobalLayout() {
   const user = useSelector((state) => state.auth.user);
   const userName = user ? user.firstName : "User";
 
+  const getTimeBasedGreeting = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour < 12) {
+      return `Hi ${userName} Good morning,`;
+    } else if (currentHour < 18) {
+      return `Hi ${userName} Good afternoon,`;
+    } else {
+      return `Hi ${userName} Good evening,`;
+    }
+  };
+
   const pathToPageName = {
-    "/dashboard": `Hey ${userName}, Good afternoon`,
+    "/dashboard": getTimeBasedGreeting(),
     "/profile": "Merchant's Details",
     "/orders": "Orders",
     "/products": " Products",
