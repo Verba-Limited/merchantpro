@@ -1,115 +1,130 @@
 import React from "react";
 import { useState } from "react";
-// import axios from "axios";
-// eslint-disable-next-line
+import {
+  setFormData,
+  setError,
+  setMessage,
+  setOtherChannel,
+  setReferralCode,
+} from "../../store/slice/formSlice";
+import { loginSuccess } from "../../store/slice/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
 import businessbackground from "../../assets/img/businessman.png";
 import mplogo from "../../assets/img/icons/flags/aaa.png";
 import frameservices from "../../assets/img/frameservices.png";
+import { $api } from "../../services";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const myStyle = {
     backgroundImage: `url(${businessbackground})`,
     backgroundSize: "cover",
   };
-  // const [message, setMessage] = useState("");
-  // const [error, setError] = useState(false);
 
-  const [referralCode, setReferralCode] = useState();
-  const [otherChannel, setOtherChannel] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [formData, setFormData] = useState({
-    organizationId: "660066e0a9e745f292899182",
-    businessName: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    rcNumber: "",
-    hearAbout: "",
-    referralCode: "",
-    otherChannel: "",
-    termsAccepted: false,
-  });
+  // const [referralCode, setReferralCode] = useState("");
+  // const [otherChannel, setOtherChannel] = useState("");
+  const formData = useSelector((state) => state.form.formData || {});
+  const referralCode = useSelector((state) => state.form.referralCode);
+  const otherChannel = useSelector((state) => state.form.otherChannel);
+  const message = useSelector((state) => state.form.message);
+  const error = useSelector((state) => state.form.error);
+
+  // const [formData, setFormData] = useState({
+  //   organizationId: "",
+  //   businessName: "",
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   password: "",
+  //   rcNumber: "",
+  //   hearAbout: "",
+  //   referralCode: "",
+  //   otherChannel: "",
+  //   termsAccepted: false,
+  // });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-    console.log(value);
-    if (value !== "Referral") setReferralCode("");
-    if (value !== "Others") setOtherChannel("");
+    // Update form data in Redux store
+    dispatch(setFormData({ [name]: type === "checkbox" ? checked : value }));
+    if (name === "hearAbout") {
+      if (value !== "Referral") {
+        dispatch(setReferralCode(""));
+      }
+      if (value !== "Others") {
+        dispatch(setOtherChannel(""));
+      }
+    }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    setIsLoading(true);
 
-    navigate("/dashboard");
+    const parsedBusinessRequest = {
+      organizationId: formData.organizationId,
+      businessInfo: {
+        tin: "",
+        businessName: formData.businessName,
+        businessPhoneNumber: "",
+        businessAddress: "",
+        country: "",
+        state: "",
+        lga: "",
+        businessType: "",
+        ageOfCompany: "",
+        companyTieredRevenue: "",
+        referralSource: {
+          howDidYouHear: formData.hearAbout,
+          referralCode: referralCode,
+          otherChannel: otherChannel,
+        },
+      },
+      serviceInfo: {
+        products: [
+          {
+            name: "",
+            description: "",
+            amount: 0,
+          },
+        ],
+        paymentPlan: "",
+        gracePeriod: "",
+      },
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      password: formData.password,
+      verified: false,
+      eSign: false,
+      agreementSigned: false,
+      kycDocuments: [],
+    };
 
-    // try {
-
-    //     const parsedBusinessRequest = {
-    //         "organizationId": formData.organizationId,
-    //         "businessInfo": {
-    //             "businessName": formData.businessName,
-    //             "businessPhoneNumber": formData.businessPhoneNumber,
-    //             "businessAddress": "",
-    //             "country": "",
-    //             "state": "",
-    //             "lga": "",
-    //             "businessType": "",
-    //             "ageOfCompany": "",
-    //             "companyTieredRevenue": "",
-    //             "referralSource": {
-    //                 "howDidYouHear": formData.hearAbout,
-    //                 "referralCode": referralCode,
-    //                 "otherChannel": otherChannel
-    //             }
-    //         },
-    //         "serviceInfo": {
-    //             "products": [
-    //             {
-    //                 "name": "",
-    //                 "description": "",
-    //                 "amount": 0
-    //             }
-    //             ],
-    //             "paymentPlan": "",
-    //             "gracePeriod": ""
-    //         },
-    //         "firstName": formData.firstName,
-    //         "lastName": formData.lastName,
-    //         "email": formData.email,
-    //         "rcNumber": formData.rcNumber,
-    //         "password": formData.password,
-    //         "verified": false,
-    //         "eSign": false,
-    //         "agreementSigned": false,
-    //         "kycDocuments": []
-    //     }
-
-    //     console.log(parsedBusinessRequest);
-
-    //     const response = await axios.post('http://localhost:5001/api/merchant', parsedBusinessRequest,
-    //     {
-    //         headers: {
-    //             'x-api-key': '80f4b2j0nmiids8k9ar2mb99sy8xl3'
-    //         }
-    //     });
-    //     console.log(response.data.message);
-    //     // Redirect or show success message
-    //     setError(false);
-    //     setMessage(response.data.message);
-    // } catch (error) {
-    //     console.error('Error:', error.response.data.message);
-    //     // Handle error
-    //     setError(true);
-    //     setMessage(error.response.data.message);
-    // }
+    try {
+      const response = await $api.post("/api/merchant", parsedBusinessRequest);
+      if ($api.isSuccessful(response)) {
+        dispatch(
+          loginSuccess({
+            user: response.data.user,
+            token: response.data.token,
+          })
+        );
+        dispatch(setMessage(response.data.message));
+        navigate("/dashboard");
+      } else {
+        dispatch(setError("An error occurred during signup."));
+      }
+    } catch (error) {
+      dispatch(setError("Something went wrong. Please try again."));
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <div>
@@ -162,7 +177,7 @@ export default function SignUp() {
                       </p>
                     </div>
                     <div className="card-body">
-                      {/* {message && (
+                      {message && (
                         <div
                           className={
                             error
@@ -173,7 +188,8 @@ export default function SignUp() {
                         >
                           {message}
                         </div>
-                      )} */}
+                      )}
+
                       <form onSubmit={handleSubmit}>
                         <div className="row">
                           <label className="text-body">Business Name</label>
@@ -191,15 +207,17 @@ export default function SignUp() {
                           </div>
                         </div>
                         <div className="row">
-                          <label className="text-body">RC Number</label>
+                          <label className="text-body">
+                            Organization Number
+                          </label>
                           <div className="mb-3">
                             <input
                               type="text"
                               className="form-control form-control-lg"
                               placeholder="RC Number"
                               aria-label="RC Number"
-                              name="rcNumber"
-                              value={formData.rcNumber}
+                              name="organizationId"
+                              value={formData.organizationId}
                               onChange={handleChange}
                               required
                             />
@@ -378,14 +396,13 @@ export default function SignUp() {
                           </div>
                         </div>
                         <div className="text-center">
-                          <Link to="/dashboard">
-                            <button
-                              type="submit"
-                              className="btn btn-lg btn-success btn-lg w-100 mt-4 mb-0"
-                            >
-                              Get Started
-                            </button>
-                          </Link>
+                          <button
+                            type="submit"
+                            className="btn btn-lg btn-success btn-lg w-100 mt-4 mb-0"
+                            disabled={isLoading}
+                          >
+                            {isLoading ? "Submitting..." : "Get Started"}
+                          </button>
                         </div>
                       </form>
                     </div>

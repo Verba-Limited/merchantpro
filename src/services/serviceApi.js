@@ -2,16 +2,17 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import { useLoading } from "src/context/loadingContext";
+import { useLoading } from "../context/loadingContext";
 
 // Set the base URL from environment variables
 export const baseURL = process.env.REACT_APP_API_URL;
 
 // Configuration for Axios instance
 const axiosConfig = {
-  withCredentials: false,
+  baseURL, // Use the base URL from environment variables
   headers: {
     Accept: "application/json",
+    "x-api-key": "zglvymmf0tfsdgvmckxdzx5hudktiq",
   },
 };
 
@@ -34,6 +35,10 @@ const setupInterceptors = (setLoading) => {
       setLoading(false);
       if (!error.response) {
         toast.error("Network error: Please check your internet connection.");
+      } else if (error.response.status === 401) {
+        toast.error("Unauthorized: Invalid API key or token.");
+      } else {
+        toast.error(error.response?.data?.message || "An error occurred.");
       }
       return Promise.reject(error);
     }
@@ -56,34 +61,17 @@ class ServiceApi {
     return {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${Cookies.get("prime_chefs_user_access_token")}`,
+        Authorization: `Bearer ${Cookies.get("api_token")}`, // Adjust token key as needed
       },
     };
   }
 
-  // Method to handle GET requests with authentication
+  // Method to handle GET requests
   async fetch(url, data) {
     try {
       const response = await axiosClient.get(this.appendToURL(url), {
-        data,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${Cookies.get(
-            "prime_chefs_user_access_token"
-          )}`,
-        },
-      });
-      return response;
-    } catch (err) {
-      return err;
-    }
-  }
-
-  // Method to handle GET requests without authentication
-  async fetchWithoutAuth(url, data) {
-    try {
-      const response = await axiosClient.get(this.appendToURL(url), {
-        data,
+        params: data,
+        headers: this.setupHeaders().headers,
       });
       return response;
     } catch (err) {
@@ -137,7 +125,8 @@ class ServiceApi {
     const codes = [200, 201, 202, 204];
     const statusCode =
       response?.status || response?.statusCode || response?.code;
-    const message = response?.response?.data?.message;
+    const message =
+      response?.data?.message || response?.response?.data?.message;
 
     if (!codes.includes(statusCode)) {
       if (Array.isArray(message) && message.length > 0) {
