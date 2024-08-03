@@ -19,13 +19,17 @@ export default function Profile() {
     }
   }, [fetchProfile, userId]);
 
+  console.log("Profile component status:", status);
+  console.log("Profile component error:", error);
+  console.log("Profile component profile:", profile);
+
   if (status === "loading") {
     return <div>Loading...</div>;
   }
 
-  if (status === "failed") {
-    return <div>Error: {error}</div>;
-  }
+  // if (status === "failed") {
+  //   return <div>Error: {error ? error : "An unknown error occurred"}</div>;
+  // }
 
   const myStyle = {
     backgroundImage: `url(${Assets.productbg})`,
@@ -84,7 +88,7 @@ export default function Profile() {
                 </div>
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">Username</h1>
-                  <p>Ezeja</p>
+                  <p>{profile?.data?.lastName}</p>
                 </div>
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">

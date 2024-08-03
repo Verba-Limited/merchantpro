@@ -14,6 +14,7 @@ export const useFetchProfile = (userId) => {
   const error = useSelector((state) => state.distributorProfile.error);
 
   const fetchProfile = useCallback(async () => {
+    console.log("fetchProfile started with userId:", userId);
     if (!userId) {
       console.log("No userId provided");
       return;
@@ -23,10 +24,9 @@ export const useFetchProfile = (userId) => {
       const response = await $api.fetch(`/api/merchant/${userId}`);
 
       if ($api.isSuccessful(response)) {
-        console.log("Profile fetch successful:", response.data);
         dispatch(fetchProfileSuccess(response.data));
       } else {
-        dispatch(fetchProfileFailure(response.data.message));
+        dispatch(fetchProfileFailure(response.data.message || "Unknown error"));
       }
     } catch (err) {
       dispatch(fetchProfileFailure(err.message));
