@@ -45,7 +45,7 @@ export default function Login() {
 
         localStorage.setItem("mpToken", token);
         localStorage.setItem("mpUserProfile", JSON.stringify(user));
-        toast.success("Login successful! Redirecting to dashboard...");
+        toast.success("Login successful!");
 
         setTimeout(() => {
           navigate("/dashboard", { replace: true });

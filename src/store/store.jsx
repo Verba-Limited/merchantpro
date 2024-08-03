@@ -1,13 +1,37 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import AuthReducer from "./slice/authSlice";
-import { useDispatch } from "react-redux";
 import FormReducer from "./slice/formSlice";
-const store = configureStore({
-  reducer: {
-    auth: AuthReducer,
-    form: FormReducer,
-  },
+import ProfileReducer from "./slice/distributor/profileSlice";
+import { useDispatch } from "react-redux";
+
+// Persist configuration
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+// Combine your reducers
+const rootReducer = combineReducers({
+  auth: AuthReducer,
+  form: FormReducer,
+  distributorProfile: ProfileReducer,
 });
+
+// Wrap the combined reducer with persistReducer
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(),
+});
+
+// Create a persistor
+export const persistor = persistStore(store);
 
 // Utility to get the current state type
 export const getRootState = () => store.getState();
