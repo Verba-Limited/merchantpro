@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Assets from "../../../constants/Assets";
+import { useFetchProfile } from "../../../components/hooks/distributorCustomHooks";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
+  const user = useSelector((state) => state.auth.user);
+  const userId = user ? user._id : null;
+
+  const { fetchProfile, profile, status, error } = useFetchProfile(userId);
+
+  console.log(userId);
+
+  useEffect(() => {
+    if (userId) {
+      fetchProfile();
+    } else {
+      console.log("No userId provided to Profile component");
+    }
+  }, [fetchProfile, userId]);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (status === "failed") {
+    return <div>Error: {error}</div>;
+  }
+
   const myStyle = {
     backgroundImage: `url(${Assets.productbg})`,
     backgroundPosition: "center",
@@ -28,7 +53,7 @@ export default function Profile() {
           </div>
           <div className="flex items-center max-[500px]:justify-between md:space-x-16 p-2">
             <h1 className="text-[#234A75] text-xl md:text-4xl font-medium">
-              Tunde Orioza
+              {profile?.data?.firstName} {profile?.data?.lastName}
             </h1>
             <button className="bg-[#234A75] flex px-4 py-2 rounded-md items-center space-x-3">
               <img src={Assets.mobile} alt="" />
@@ -52,7 +77,10 @@ export default function Profile() {
               <div className="flex flex-col space-y-6">
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">Email</h1>
-                  <p>Tunde.Orioza@gmail.com</p>
+                  <p>
+                    {" "}
+                    <p>{profile?.data?.email}</p>
+                  </p>
                 </div>
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">Username</h1>
@@ -79,20 +107,20 @@ export default function Profile() {
                   <h1 className="text-[#353F4D] font-bold text-xl">
                     Payment Type
                   </h1>
-                  <p>Margin</p>
+                  <p>{profile?.data?.serviceInfo?.paymentPlan}</p>
                 </div>
 
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">
-                    Business Category
+                    Business Name
                   </h1>
-                  <p>Ltd Liablity</p>
+                  <p>{profile?.data?.businessInfo?.businessName}</p>
                 </div>
               </div>
               <div className="flex flex-col space-y-6">
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">Phone</h1>
-                  <p>07044290256</p>
+                  <p>{profile?.data?.businessInfo?.businessPhoneNumber}</p>
                 </div>
 
                 <div>

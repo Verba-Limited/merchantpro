@@ -6,13 +6,18 @@ import { useLoading } from "../context/loadingContext";
 
 // Set the base URL from environment variables
 export const baseURL = process.env.REACT_APP_API_URL;
+export const apiKey = process.env.REACT_APP_API_KEY;
+export const authToken = process.env.REACT_APP_AUTH_TOKEN;
+
+console.log("Authorization Token:", authToken);
 
 // Configuration for Axios instance
 const axiosConfig = {
   baseURL, // Use the base URL from environment variables
   headers: {
     Accept: "application/json",
-    "x-api-key": "zglvymmf0tfsdgvmckxdzx5hudktiq",
+    "x-api-key": apiKey,
+    Authorization: `Bearer ${authToken}`,
   },
 };
 
@@ -61,7 +66,8 @@ class ServiceApi {
     return {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${Cookies.get("api_token")}`, // Adjust token key as needed
+        // Authorization: `Bearer ${Cookies.get("api_token")}`,
+        Authorization: `Bearer ${authToken}`,
       },
     };
   }
