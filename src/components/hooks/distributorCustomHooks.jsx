@@ -22,16 +22,13 @@ export const useFetchProfile = (userId) => {
     dispatch(fetchProfileStart());
     try {
       const response = await $api.fetch(`/api/merchant/${userId}`);
-      console.log("API response:", response);
+
       if ($api.isSuccessful(response)) {
-        console.log("Profile fetch successful:", response.data);
         dispatch(fetchProfileSuccess(response.data));
       } else {
-        console.log("Profile fetch failed:", response.data.message);
         dispatch(fetchProfileFailure(response.data.message || "Unknown error"));
       }
     } catch (err) {
-      console.log("Profile fetch error:", err.message);
       dispatch(fetchProfileFailure(err.message));
     }
   }, [dispatch, userId]);
