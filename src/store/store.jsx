@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import AuthReducer from "./slice/authSlice";
 import FormReducer from "./slice/formSlice";
 import ProfileReducer from "./slice/distributor/profileSlice";
+import productReducer from "./slice/distributor/ProductSlice";
 import { useDispatch } from "react-redux";
 
 // Persist configuration
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   auth: AuthReducer,
   form: FormReducer,
   distributorProfile: ProfileReducer,
+  products: productReducer,
 });
 
 // Wrap the combined reducer with persistReducer

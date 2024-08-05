@@ -3,9 +3,9 @@ import Assets from "../../../constants/Assets";
 import { useFetchProfile } from "../../../components/hooks/distributorCustomHooks";
 import { useSelector } from "react-redux";
 
-export default function Profile() {
-  const user = useSelector((state) => state.auth.user);
-  const userId = user ? user._id : null;
+export default function Profile({ userId }) {
+  // const user = useSelector((state) => state.auth.user);
+  // const userId = user ? user._id : null;
 
   const { fetchProfile, profile, status, error } = useFetchProfile(userId);
 
