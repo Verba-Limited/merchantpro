@@ -9,8 +9,6 @@ export const baseURL = process.env.REACT_APP_API_URL;
 export const apiKey = process.env.REACT_APP_API_KEY;
 export const authToken = process.env.REACT_APP_AUTH_TOKEN;
 
-console.log("Authorization Token:", authToken);
-
 // Configuration for Axios instance
 const axiosConfig = {
   baseURL, // Use the base URL from environment variables
@@ -95,6 +93,7 @@ class ServiceApi {
       );
       return response;
     } catch (err) {
+      console.error("Error in POST request:", err);
       return err;
     }
   }
