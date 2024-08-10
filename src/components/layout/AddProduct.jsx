@@ -62,7 +62,6 @@ export default function AddProduct() {
               <option value="Drug">Drug</option>
               <option value="Food">Food</option>
               <option value="Cosmetic">Cosmetic</option>
-              {/* Add more categories as needed */}
             </select>
           </div>
           <div className="mb-3 w-full md:w-2/5">
@@ -202,15 +201,11 @@ export default function AddProduct() {
             />
           </div>
         </div>
-        {error && (
-          <div className="mb-3 w-full md:w-2/5">
-            <p className="text-red-500">{error}</p>
-          </div>
-        )}
+
         <div>
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            className="bg-blue-500 mb-3 text-white py-2 px-4 rounded hover:bg-blue-600"
             disabled={loading}
           >
             {loading ? (

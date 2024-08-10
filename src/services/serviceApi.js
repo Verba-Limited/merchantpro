@@ -11,7 +11,7 @@ export const authToken = process.env.REACT_APP_AUTH_TOKEN;
 
 // Configuration for Axios instance
 const axiosConfig = {
-  baseURL, // Use the base URL from environment variables
+  baseURL,
   headers: {
     Accept: "application/json",
     "x-api-key": apiKey,

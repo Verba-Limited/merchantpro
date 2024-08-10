@@ -5,6 +5,7 @@ const initialState = {
   formData: {
     businessName: "",
     organizationId: "",
+    rcNumber: "",
     firstName: "",
     lastName: "",
     email: "",
