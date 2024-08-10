@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 import { $api } from "../../services";
 import { addProduct } from "../../store/slice/distributor/ProductSlice";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const useFetchProfile = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,6 @@ export const useFetchProfile = () => {
   const status = useSelector((state) => state.distributorProfile.status);
   const error = useSelector((state) => state.distributorProfile.error);
 
-  console.log("fetchProfile started with userId:", user);
   const fetchProfile = useCallback(async () => {
     if (!userId) {
       console.log("No userId provided");
@@ -28,14 +28,11 @@ export const useFetchProfile = () => {
       const response = await $api.fetch(`/api/merchant/${userId}`);
       console.log("API response:", response);
       if ($api.isSuccessful(response)) {
-        console.log("Profile fetch successful:", response.data);
-        dispatch(fetchProfileSuccess(response.data));
+        dispatch(fetchProfileSuccess(response.data.data));
       } else {
-        console.log("Profile fetch failed:", response.data.message);
         dispatch(fetchProfileFailure(response.data.message || "Unknown error"));
       }
     } catch (err) {
-      console.log("Profile fetch error:", err.message);
       dispatch(fetchProfileFailure(err.message));
     }
   }, [dispatch, userId]);
@@ -65,7 +62,6 @@ const useAddProduct = () => {
   });
 
   const [preview, setPreview] = useState(null);
-  // Automatically set user-related fields when the user data is available
   useEffect(() => {
     if (user) {
       setFormData((prevFormData) => ({
@@ -94,7 +90,7 @@ const useAddProduct = () => {
       // Upload the image to Cloudinary
       const uploadImage = async () => {
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append("file", file[0]);
         formData.append("upload_preset", "merchant");
         formData.append("cloud_name", "dsm0ozjbr");
 
@@ -103,10 +99,11 @@ const useAddProduct = () => {
             "https://api.cloudinary.com/v1_1/dsm0ozjbr/image/upload",
             formData
           );
-          const imageUrl = response.data.secure_url;
+          console.log(response, "image res");
+
           setFormData((prevFormData) => ({
             ...prevFormData,
-            coverPicture: imageUrl,
+            coverPicture: response.data.secure_url,
           }));
         } catch (error) {
           console.error("Error uploading image:", error);
@@ -134,3 +131,40 @@ const useAddProduct = () => {
 };
 
 export default useAddProduct;
+
+export const useProductDetails = () => {
+  const [productItems, setProductItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const products = useSelector((state) => state.products.products);
+  const productId = products.length > 0 ? products[0]._id : null;
+
+  console.log(products, "products from store");
+  console.log(productId, "productId from store");
+
+  const fetchProductDetails = useCallback(async () => {
+    if (!productId) {
+      console.log("No productId provided");
+      return;
+    }
+    try {
+      const response = await $api.get(`/api/products/${productId}`);
+      console.log(response, "product response");
+      if ($api.isSuccessful(response)) {
+        setProductItems(response.data.data || []);
+      } else {
+        setError("Failed to fetch products");
+      }
+    } catch (error) {
+      setError(error.toString());
+    } finally {
+      setLoading(false);
+    }
+  }, [productId]);
+
+  useEffect(() => {
+    fetchProductDetails();
+  }, [fetchProductDetails]);
+
+  return { productItems, loading, error };
+};

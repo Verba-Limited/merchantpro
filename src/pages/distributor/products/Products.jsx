@@ -10,13 +10,17 @@ import {
 } from "@mui/material";
 import Assets from "../../../constants/Assets";
 import { useNavigate } from "react-router-dom";
-import ProductItems from "../../../components/Ui/ProductItems";
+import { useProductDetails } from "../../../components/hooks/distributorCustomHooks";
+// import ProductItems from "../../../components/Ui/ProductItems";
 
 export default function Products() {
   const navigate = useNavigate();
-  const products = Array(9).fill({});
+  // const products = Array(9).fill({});
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [category, setCategory] = React.useState("");
+  const { productItems, loading, error } = useProductDetails();
+
+  // console.log(productItems, "this is productitem");
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -37,6 +41,9 @@ export default function Products() {
   const navigateToSuggestionPage = () => {
     navigate("/products/addProducts");
   };
+
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error loading products: {error}</p>;
   return (
     <div className="md:container mt-4 md:p-4">
       <div style={myStyle} className="">
@@ -125,9 +132,15 @@ export default function Products() {
       <div className="">
         <div className="pt-5">
           <div className="grid md:grid-cols-3 grid-cols-1 gap-6 ">
-            {products.map((product, index) => (
-              <ProductItems key={index} />
-            ))}
+            {productItems.length > 0 ? (
+              productItems.map((product) => (
+                <div key={product._id}>
+                  <h2>{product.productName}</h2>
+                </div>
+              ))
+            ) : (
+              <p>No products available.</p>
+            )}
           </div>
         </div>
 

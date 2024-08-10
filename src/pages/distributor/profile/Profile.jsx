@@ -3,13 +3,11 @@ import Assets from "../../../constants/Assets";
 import { useFetchProfile } from "../../../components/hooks/distributorCustomHooks";
 import { useSelector } from "react-redux";
 
-export default function Profile({ userId }) {
-  // const user = useSelector((state) => state.auth.user);
-  // const userId = user ? user._id : null;
+export default function Profile() {
+  const user = useSelector((state) => state.auth.user);
+  const userId = user ? user._id : null;
 
   const { fetchProfile, profile, status, error } = useFetchProfile(userId);
-
-  console.log(userId);
 
   useEffect(() => {
     if (userId) {
@@ -19,17 +17,13 @@ export default function Profile({ userId }) {
     }
   }, [fetchProfile, userId]);
 
-  console.log("Profile component status:", status);
-  console.log("Profile component error:", error);
-  console.log("Profile component profile:", profile);
-
   if (status === "loading") {
     return <div>Loading...</div>;
   }
 
-  // if (status === "failed") {
-  //   return <div>Error: {error ? error : "An unknown error occurred"}</div>;
-  // }
+  if (status === "failed") {
+    return <div>Error: {error ? error : "An unknown error occurred"}</div>;
+  }
 
   const myStyle = {
     backgroundImage: `url(${Assets.productbg})`,
@@ -57,7 +51,7 @@ export default function Profile({ userId }) {
           </div>
           <div className="flex items-center max-[500px]:justify-between md:space-x-16 p-2">
             <h1 className="text-[#234A75] text-xl md:text-4xl font-medium">
-              {profile?.data?.firstName} {profile?.data?.lastName}
+              {profile?.firstName} {profile?.lastName}
             </h1>
             <button className="bg-[#234A75] flex px-4 py-2 rounded-md items-center space-x-3">
               <img src={Assets.mobile} alt="" />
@@ -83,12 +77,12 @@ export default function Profile({ userId }) {
                   <h1 className="text-[#353F4D] font-bold text-xl">Email</h1>
                   <p>
                     {" "}
-                    <p>{profile?.data?.email}</p>
+                    <p>{profile?.email}</p>
                   </p>
                 </div>
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">Username</h1>
-                  <p>{profile?.data?.lastName}</p>
+                  <p>{profile?.lastName}</p>
                 </div>
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">
@@ -111,20 +105,20 @@ export default function Profile({ userId }) {
                   <h1 className="text-[#353F4D] font-bold text-xl">
                     Payment Type
                   </h1>
-                  <p>{profile?.data?.serviceInfo?.paymentPlan}</p>
+                  <p>{profile?.serviceInfo?.paymentPlan}</p>
                 </div>
 
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">
                     Business Name
                   </h1>
-                  <p>{profile?.data?.businessInfo?.businessName}</p>
+                  <p>{profile?.businessInfo?.businessName}</p>
                 </div>
               </div>
               <div className="flex flex-col space-y-6">
                 <div>
                   <h1 className="text-[#353F4D] font-bold text-xl">Phone</h1>
-                  <p>{profile?.data?.businessInfo?.businessPhoneNumber}</p>
+                  <p>{profile?.businessInfo?.businessPhoneNumber}</p>
                 </div>
 
                 <div>

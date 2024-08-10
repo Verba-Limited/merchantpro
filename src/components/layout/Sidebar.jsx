@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Category,
   People,
@@ -11,12 +11,24 @@ import {
   Candle,
 } from "iconsax-react";
 import Logo from "../../assets/img/mplogo.png";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { logout } from "../../store/slice/authSlice";
 
 export default function Sidebar({ isOpen, closeSidebar }) {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const isActive = (path) => {
     return location.pathname.startsWith(path);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem("authToken");
+    toast.success("You have been logged out.");
+    navigate("/login");
   };
 
   const links = [
@@ -28,7 +40,7 @@ export default function Sidebar({ isOpen, closeSidebar }) {
     { path: "/reports", icon: Candle, label: "Report" },
     { path: "/settings", icon: Setting2, label: "Settings" },
     { path: "/help", icon: Sms, label: "Help" },
-    { path: "/register", icon: LogoutCurve, label: "Log Out" },
+    { path: "#", icon: LogoutCurve, label: "Log Out", action: handleLogout },
   ];
 
   return (
@@ -61,8 +73,8 @@ export default function Sidebar({ isOpen, closeSidebar }) {
               <img src={Logo} alt="Logo" width={150} />
             </Link>
             <nav className="d-flex flex-column gap-3">
-              {links.map(({ path, icon: Icon, label }) => (
-                <Link to={path} key={path} onClick={closeSidebar}>
+              {links.map(({ path, icon: Icon, label, action }) => (
+                <Link to={path} key={path} onClick={action || closeSidebar}>
                   <div
                     className={`d-flex align-items-center p-2 cursor-pointer text-light ${
                       isActive(path)
@@ -110,8 +122,8 @@ export default function Sidebar({ isOpen, closeSidebar }) {
               <img src={Logo} alt="Logo" width={150} />
             </Link>
             <nav className="d-flex flex-column gap-3">
-              {links.map(({ path, icon: Icon, label }) => (
-                <Link to={path} key={path}>
+              {links.map(({ path, icon: Icon, label, action }) => (
+                <Link to={path} key={path} onClick={action || closeSidebar}>
                   <div
                     className={`d-flex align-items-center p-2 cursor-pointer text-light ${
                       isActive(path)

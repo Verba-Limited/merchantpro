@@ -1,21 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { fetchProfile } from "./distributorThunk";
-
-const initialState = {
-  data: null,
-  status: "idle",
-  error: null,
-};
 
 const profileSlice = createSlice({
   name: "distributorProfile",
-  initialState,
+  initialState: {
+    data: null,
+    status: "idle",
+    error: null,
+  },
   reducers: {
     fetchProfileStart(state) {
       state.status = "loading";
       state.error = null;
     },
     fetchProfileSuccess(state, action) {
+      console.log("Profile fetch succeeded with payload:", action.payload);
       state.status = "succeeded";
       state.data = action.payload;
     },

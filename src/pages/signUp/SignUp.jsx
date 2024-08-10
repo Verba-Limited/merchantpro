@@ -7,13 +7,14 @@ import {
   setOtherChannel,
   setReferralCode,
 } from "../../store/slice/formSlice";
-import { loginSuccess } from "../../store/slice/authSlice";
+import { loginSuccess, authError } from "../../store/slice/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import businessbackground from "../../assets/img/businessman.png";
 import mplogo from "../../assets/img/icons/flags/aaa.png";
 import frameservices from "../../assets/img/frameservices.png";
 import { $api } from "../../services";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -26,27 +27,9 @@ export default function SignUp() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // const [referralCode, setReferralCode] = useState("");
-  // const [otherChannel, setOtherChannel] = useState("");
   const formData = useSelector((state) => state.form.formData || {});
   const referralCode = useSelector((state) => state.form.referralCode);
   const otherChannel = useSelector((state) => state.form.otherChannel);
-  const message = useSelector((state) => state.form.message);
-  const error = useSelector((state) => state.form.error);
-
-  // const [formData, setFormData] = useState({
-  //   organizationId: "",
-  //   businessName: "",
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   password: "",
-  //   rcNumber: "",
-  //   hearAbout: "",
-  //   referralCode: "",
-  //   otherChannel: "",
-  //   termsAccepted: false,
-  // });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -66,62 +49,40 @@ export default function SignUp() {
     e.preventDefault();
     setIsLoading(true);
 
-    const parsedBusinessRequest = {
+    const parsedRequest = {
       organizationId: formData.organizationId,
-      businessInfo: {
-        tin: "",
-        businessName: formData.businessName,
-        businessPhoneNumber: "",
-        businessAddress: "",
-        country: "",
-        state: "",
-        lga: "",
-        businessType: "",
-        ageOfCompany: "",
-        companyTieredRevenue: "",
-        referralSource: {
-          howDidYouHear: formData.hearAbout,
-          referralCode: referralCode,
-          otherChannel: otherChannel,
-        },
-      },
-      serviceInfo: {
-        products: [
-          {
-            name: "",
-            description: "",
-            amount: 0,
-          },
-        ],
-        paymentPlan: "",
-        gracePeriod: "",
-      },
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      password: formData.password,
+      rcNumber: "",
       verified: false,
       eSign: false,
       agreementSigned: false,
       kycDocuments: [],
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      password: formData.password,
     };
 
     try {
-      const response = await $api.post("/api/merchant", parsedBusinessRequest);
+      const response = await $api.post("/api/merchant", parsedRequest);
+
       if ($api.isSuccessful(response)) {
         dispatch(
           loginSuccess({
-            user: response.data.user,
-            token: response.data.token,
+            user: response.data.data,
           })
         );
         dispatch(setMessage(response.data.message));
+        toast.success("Signup successful!");
         navigate("/dashboard");
       } else {
-        dispatch(setError("An error occurred during signup."));
+        dispatch(authError("An error occurred during signup."));
+        dispatch(setError(response.data.message || "Signup failed."));
+        toast.error(response.data.message || "Signup failed.");
       }
     } catch (error) {
+      dispatch(authError("Network error. Please try again."));
       dispatch(setError("Something went wrong. Please try again."));
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -177,7 +138,7 @@ export default function SignUp() {
                       </p>
                     </div>
                     <div className="card-body">
-                      {message && (
+                      {/* {message && (
                         <div
                           className={
                             error
@@ -188,7 +149,7 @@ export default function SignUp() {
                         >
                           {message}
                         </div>
-                      )}
+                      )} */}
 
                       <form onSubmit={handleSubmit}>
                         <div className="row">
@@ -200,7 +161,7 @@ export default function SignUp() {
                               placeholder="Business Name"
                               aria-label="Business Name"
                               name="businessName"
-                              value={formData.businessName}
+                              value={formData.businessName || ""}
                               onChange={handleChange}
                               required
                             />
@@ -217,7 +178,7 @@ export default function SignUp() {
                               placeholder="RC Number"
                               aria-label="RC Number"
                               name="organizationId"
-                              value={formData.organizationId}
+                              value={formData.organizationId || ""}
                               onChange={handleChange}
                               required
                             />
@@ -232,7 +193,7 @@ export default function SignUp() {
                                 className="form-control form-control-lg"
                                 aria-label="First Name"
                                 name="firstName"
-                                value={formData.firstName}
+                                value={formData.firstName || ""}
                                 onChange={handleChange}
                                 placeholder="First Name"
                                 required
@@ -247,7 +208,7 @@ export default function SignUp() {
                                 className="form-control form-control-lg"
                                 aria-label="Last Name"
                                 name="lastName"
-                                value={formData.lastName}
+                                value={formData.lastName || ""}
                                 onChange={handleChange}
                                 placeholder="Last Name"
                                 required
@@ -263,7 +224,7 @@ export default function SignUp() {
                               className="form-control form-control-lg"
                               aria-label="Work Email"
                               name="email"
-                              value={formData.email}
+                              value={formData.email || ""}
                               onChange={handleChange}
                               placeholder="Work Email"
                               required
@@ -279,7 +240,7 @@ export default function SignUp() {
                                 className="form-control form-control-lg"
                                 aria-label="Password"
                                 name="password"
-                                value={formData.password}
+                                value={formData.password || ""}
                                 onChange={handleChange}
                                 placeholder="Password"
                                 required
