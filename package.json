@@ -19,6 +19,7 @@
     "chart.js": "^4.4.3",
     "cloudinary": "^2.4.0",
     "customize-cra": "^1.0.0",
+    "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
     "flowbite": "^2.3.0",
     "http-proxy-middleware": "^3.0.0",
