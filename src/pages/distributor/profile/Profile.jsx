@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Assets from "../../../constants/Assets";
 import { useFetchProfile } from "../../../components/hooks/distributorCustomHooks";
 import { useSelector } from "react-redux";
+import Spinner from "../../../components/loaders/spinners/Spinner";
 
 export default function Profile() {
   const user = useSelector((state) => state.auth.user);
@@ -18,11 +19,7 @@ export default function Profile() {
   }, [fetchProfile, userId]);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (status === "failed") {
-    return <div>Error: {error ? error : "An unknown error occurred"}</div>;
+    return <Spinner />;
   }
 
   const myStyle = {

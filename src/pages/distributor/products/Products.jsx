@@ -10,17 +10,19 @@ import {
 } from "@mui/material";
 import Assets from "../../../constants/Assets";
 import { useNavigate } from "react-router-dom";
-import { useProductDetails } from "../../../components/hooks/distributorCustomHooks";
+import { useFetchProducts } from "../../../components/hooks/distributorCustomHooks";
+import ProductLoader from "../../../components/loaders/cards/ProductLoader";
 // import ProductItems from "../../../components/Ui/ProductItems";
+import Spinner from "../../../components/loaders/spinners/Spinner";
 
 export default function Products() {
   const navigate = useNavigate();
   // const products = Array(9).fill({});
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [category, setCategory] = React.useState("");
-  const { productItems, loading, error } = useProductDetails();
+  const { products, loading, error } = useFetchProducts();
 
-  // console.log(productItems, "this is productitem");
+  console.log(products, "all product");
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -42,7 +44,9 @@ export default function Products() {
     navigate("/products/addProducts");
   };
 
-  // if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return <Spinner />;
+  }
   // if (error) return <p>Error loading products: {error}</p>;
   return (
     <div className="md:container mt-4 md:p-4">
@@ -132,10 +136,47 @@ export default function Products() {
       <div className="">
         <div className="pt-5">
           <div className="grid md:grid-cols-3 grid-cols-1 gap-6 ">
-            {productItems.length > 0 ? (
-              productItems.map((product) => (
+            {loading ? (
+              // Show loading skeletons when loading is true
+              <>
+                <ProductLoader color="#f0f0f0" />
+                <ProductLoader color="#f0f0f0" />
+                <ProductLoader color="#f0f0f0" />
+              </>
+            ) : error ? (
+              <p>Error loading products: {error}</p>
+            ) : products.length > 0 ? (
+              products.map((product) => (
                 <div key={product._id}>
-                  <h2>{product.productName}</h2>
+                  <div className="bg-white shadow-md rounded-lg w-[80%] mx-auto">
+                    <div className="p-3 space-y-7">
+                      <div className="flex justify-between items-center">
+                        <h1 className="font-bold text-lg">
+                          {product.productName}
+                        </h1>
+                        <img
+                          src={Assets.heart}
+                          alt="Heart Icon"
+                          width={24}
+                          height={24}
+                        />
+                      </div>
+                      <div className="flex justify-center">
+                        <img
+                          src={Assets.piriton}
+                          alt="Piriton Syrup"
+                          className="w-[215px] h-[215px] object-contain"
+                        />
+                      </div>
+                      <div className="flex justify-between">
+                        <img src={Assets.naria} alt="Naira Icon" />
+                        <p className="text-xl font-semibold">254.99</p>
+                        <button className="flex items-center justify-center px-3 space-x-2 bg-[#234a75] text-white rounded">
+                          Edit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))
             ) : (

@@ -132,39 +132,66 @@ const useAddProduct = () => {
 
 export default useAddProduct;
 
-export const useProductDetails = () => {
-  const [productItems, setProductItems] = useState([]);
+export const useFetchProducts = () => {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const products = useSelector((state) => state.products.products);
-  const productId = products.length > 0 ? products[0]._id : null;
-
-  console.log(products, "products from store");
-  console.log(productId, "productId from store");
-
-  const fetchProductDetails = useCallback(async () => {
-    if (!productId) {
-      console.log("No productId provided");
-      return;
-    }
-    try {
-      const response = await $api.get(`/api/products/${productId}`);
-      console.log(response, "product response");
-      if ($api.isSuccessful(response)) {
-        setProductItems(response.data.data || []);
-      } else {
-        setError("Failed to fetch products");
-      }
-    } catch (error) {
-      setError(error.toString());
-    } finally {
-      setLoading(false);
-    }
-  }, [productId]);
 
   useEffect(() => {
-    fetchProductDetails();
-  }, [fetchProductDetails]);
+    const fetchProducts = async () => {
+      try {
+        const response = await $api.fetch("/api/products");
+        console.log(response, "all product response");
 
-  return { productItems, loading, error };
+        if ($api.isSuccessful(response)) {
+          setProducts(response.data.data);
+          console.log(response.data.data);
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  return { products, loading, error };
 };
+
+// export const useProductDetails = () => {
+//   const [productItems, setProductItems] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const products = useSelector((state) => state.products.products);
+//   const productId = products.length > 0 ? products[0]._id : null;
+
+//   // console.log(products, "products from store");
+//   // console.log(productId, "productId from store");
+
+//   const fetchProductDetails = useCallback(async () => {
+//     if (!productId) {
+//       console.log("No productId provided");
+//       return;
+//     }
+//     try {
+//       const response = await $api.get(`/api/products/${productId}`);
+//       console.log(response, "product response");
+//       if ($api.isSuccessful(response)) {
+//         setProductItems(response.data.data || []);
+//       } else {
+//         setError("Failed to fetch products");
+//       }
+//     } catch (error) {
+//       setError(error.toString());
+//     } finally {
+//       setLoading(false);
+//     }
+//   }, [productId]);
+
+//   useEffect(() => {
+//     fetchProductDetails();
+//   }, [fetchProductDetails]);
+
+//   return { productItems, loading, error };
+// };
