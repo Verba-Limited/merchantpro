@@ -47,10 +47,12 @@ import action from "../assets/img/dots.png";
 import pinky from "../assets/img/pink.png";
 import emzor from "../assets/img/emzor.png";
 import health from "../assets/img/health.png";
+import lokaml from "../assets/img/lokaml3.png";
 import icons from "../assets/img/Icon.svg";
 const Assets = {
   plus,
   withdraw,
+  lokaml,
   transfer,
   eye,
   house,

@@ -12,7 +12,7 @@ import Assets from "../../../constants/Assets";
 import { useNavigate } from "react-router-dom";
 import { useFetchProducts } from "../../../components/hooks/distributorCustomHooks";
 import ProductLoader from "../../../components/loaders/cards/ProductLoader";
-// import ProductItems from "../../../components/Ui/ProductItems";
+import { formatDate } from "../../../helpers/formatDate";
 import Spinner from "../../../components/loaders/spinners/Spinner";
 
 export default function Products() {
@@ -133,56 +133,82 @@ export default function Products() {
           </div>
         </div>
       </div>
-      <div className="">
-        <div className="pt-5">
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-6 ">
-            {loading ? (
-              // Show loading skeletons when loading is true
-              <>
-                <ProductLoader color="#f0f0f0" />
-                <ProductLoader color="#f0f0f0" />
-                <ProductLoader color="#f0f0f0" />
-              </>
-            ) : error ? (
-              <p>Error loading products: {error}</p>
-            ) : products.length > 0 ? (
-              products.map((product) => (
-                <div key={product._id}>
-                  <div className="bg-white shadow-md rounded-lg w-[80%] mx-auto">
-                    <div className="p-3 space-y-7">
-                      <div className="flex justify-between items-center">
-                        <h1 className="font-bold text-lg">
-                          {product.productName}
-                        </h1>
-                        <img
-                          src={Assets.heart}
-                          alt="Heart Icon"
-                          width={24}
-                          height={24}
-                        />
-                      </div>
-                      <div className="flex justify-center">
-                        <img
-                          src={Assets.piriton}
-                          alt="Piriton Syrup"
-                          className="w-[215px] h-[215px] object-contain"
-                        />
-                      </div>
-                      <div className="flex justify-between">
-                        <img src={Assets.naria} alt="Naira Icon" />
-                        <p className="text-xl font-semibold">254.99</p>
-                        <button className="flex items-center justify-center px-3 space-x-2 bg-[#234a75] text-white rounded">
-                          Edit
-                        </button>
-                      </div>
+      <div className="mt-7">
+        <div className="mt-8 gap-4 grid 2xl:grid-cols-3 md:grid-cols-2 grid-cols-1">
+          {loading ? (
+            <>
+              <ProductLoader color="#f0f0f0" />
+              <ProductLoader color="#f0f0f0" />
+              <ProductLoader color="#f0f0f0" />
+            </>
+          ) : error ? (
+            <p>Error loading products: {error}</p>
+          ) : products.length > 0 ? (
+            products.map((product) => (
+              <div key={product._id}>
+                <div className="bg-white shadow rounded-lg w-[80%] mx-auto p-4">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h1 className="text-black font-semibold text-lg">
+                        {product.productName}
+                      </h1>
+                      <p className="text-sm font-normal text-gray-900">
+                        {formatDate(product.createdDate)}
+                      </p>
+                      <p className="text-gray-400 text-xs font-normal">
+                        Category: {product.productCategory}
+                      </p>
                     </div>
+                    <button className="text-gray-400">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5.75 9.75L12 4.5l6.25 5.25M12 4.5v14.25"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="mb-4 space-y-5">
+                    <p className="text-gray-500 text-sm">
+                      {product.productDescription}
+                    </p>
+                    <p className="text-black font-semibold text-sm flex items-center">
+                      QTY:{" "}
+                      <span className="font-normal">{product.quantity}</span>
+                    </p>
+                  </div>
+                  <div className="mb-4">
+                    <img
+                      src={Assets.lokaml} // Use your product image URL here
+                      alt={product.name}
+                      className="w-full h-[150px] object-cover rounded-lg"
+                    />
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-gray-500 text-sm">Total Price:</p>
+                      <p className="text-black font-semibold text-lg">
+                        N{product.price}
+                      </p>
+                    </div>
+                    <button className="bg-[#234A75] text-white py-2 px-4 rounded-lg">
+                      Edit
+                    </button>
                   </div>
                 </div>
-              ))
-            ) : (
-              <p>No products available.</p>
-            )}
-          </div>
+              </div>
+            ))
+          ) : (
+            <p>No products available.</p>
+          )}
         </div>
 
         <div className="flex justify-end items-center py-2">
