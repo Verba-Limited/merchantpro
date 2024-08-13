@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Assets from "../../constants/Assets";
 import { priceDesc } from "../../data";
 
-export default function ProductEdit({ onClose }) {
+export default function ProductEdit({ productData, onClose, onUpdate }) {
+  const [formData, setFormData] = useState(productData);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  useEffect(() => {
+    setFormData(productData);
+  }, [productData]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleUpdate = async () => {
+    setIsUpdating(true);
+    if (onUpdate) {
+      await onUpdate(formData);
+    }
+    setIsUpdating(false);
+  };
   return (
     <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
       <div className="flex flex-col items-center justify-center">
@@ -25,10 +44,11 @@ export default function ProductEdit({ onClose }) {
                 <input
                   type="text"
                   className="form-control form-control-lg w-full"
-                  placeholder="Lokmal"
-                  aria-label="TIN"
-                  name="tin"
-                  required
+                  placeholder="Product Name"
+                  aria-label="Name"
+                  name="productName"
+                  value={formData.productName || ""}
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="mb-3 w-full md:w-1/2">
@@ -38,10 +58,11 @@ export default function ProductEdit({ onClose }) {
                 <input
                   type="text"
                   className="form-control form-control-lg w-full"
-                  placeholder="Enter"
-                  aria-label="Cate"
-                  name="Maleria"
-                  required
+                  placeholder="Category"
+                  aria-label="Category"
+                  name="productCategory"
+                  value={formData.productCategory || ""}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -57,9 +78,10 @@ export default function ProductEdit({ onClose }) {
                   type="text"
                   className="form-control form-control-lg w-full"
                   placeholder="12345-678-923"
-                  aria-label="Nafdac No"
-                  name="tin"
-                  required
+                  aria-label="nafdacNumber"
+                  name="nafdacNumber"
+                  value={formData.nafdacNumber || ""}
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="mb-3 w-full md:w-1/2">
@@ -70,28 +92,31 @@ export default function ProductEdit({ onClose }) {
                   type="text"
                   className="form-control form-control-lg w-full"
                   placeholder="8/10/2012"
-                  aria-label="Expiring Date"
-                  name="Maleria"
-                  required
+                  aria-label="expiryDate"
+                  name="expiryDate"
+                  value={formData.expiryDate || ""}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
             <div className="mb-3 w-full">
               <label className="text-[15px] font-normal text-black">
-                Details
+                Product Description
               </label>
               <input
                 type="text"
                 className="form-control form-control-lg w-full py-4"
                 placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend a orci rhoncus diam."
-                aria-label="details"
-                name="details"
+                aria-label="product Description"
+                name="productDescription"
+                value={formData.productDescription || ""}
+                onChange={handleInputChange}
               />
             </div>
             <div className="flex flex-col mb-3 w-full">
               <h1 className="text-[15px] font-normal text-black">Cover</h1>
               <div className="border-2 border-gray-300 p-3 mt-3">
-                <img src={Assets.cover} alt="" />
+                <img src={formData.coverPicture || Assets.cover} alt="" />
               </div>
             </div>
             <div className="flex flex-wrap justify-between mb-3">
@@ -120,7 +145,7 @@ export default function ProductEdit({ onClose }) {
                 Available
               </p>
             </div>
-            <div className="mb-3 space-y-3 w-full">
+            {/* <div className="mb-3 space-y-3 w-full">
               <h1 className="text-[#2B2B2B] text-[14px] font-medium">
                 Payment Plan
               </h1>
@@ -130,10 +155,18 @@ export default function ProductEdit({ onClose }) {
                 <p>End Date</p>
                 <img src={Assets.date} alt="" />
               </div>
-            </div>
+            </div> */}
             <div className="flex justify-end">
-              <button className="bg-[#4d9a1d] px-5 py-2 text-white rounded-lg font-medium text-[16px]">
-                Update
+              <button
+                onClick={handleUpdate}
+                className="bg-[#4d9a1d] px-5 py-2 text-white rounded-lg font-medium text-[16px]"
+                disabled={isUpdating}
+              >
+                {isUpdating ? (
+                  <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+                ) : (
+                  "Update"
+                )}
               </button>
             </div>
           </div>
