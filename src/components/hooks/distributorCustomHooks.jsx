@@ -26,7 +26,7 @@ export const useFetchProfile = () => {
     dispatch(fetchProfileStart());
     try {
       const response = await $api.fetch(`/api/merchant/${userId}`);
-      console.log("API response:", response);
+
       if ($api.isSuccessful(response)) {
         dispatch(fetchProfileSuccess(response.data.data));
       } else {
@@ -141,11 +141,9 @@ export const useFetchProducts = () => {
     const fetchProducts = async () => {
       try {
         const response = await $api.fetch("/api/products");
-        console.log(response, "all product response");
 
         if ($api.isSuccessful(response)) {
           setProducts(response.data.data);
-          console.log(response.data.data);
         }
       } catch (error) {
         setError(error.message);
@@ -156,42 +154,33 @@ export const useFetchProducts = () => {
     fetchProducts();
   }, []);
 
-  return { products, loading, error };
+  return { products, setProducts, loading, error };
 };
 
-// export const useProductDetails = () => {
-//   const [productItems, setProductItems] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-//   const products = useSelector((state) => state.products.products);
-//   const productId = products.length > 0 ? products[0]._id : null;
+export const useProductDetails = (productId) => {
+  const [productItems, setProductItems] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-//   // console.log(products, "products from store");
-//   // console.log(productId, "productId from store");
-
-//   const fetchProductDetails = useCallback(async () => {
-//     if (!productId) {
-//       console.log("No productId provided");
-//       return;
-//     }
-//     try {
-//       const response = await $api.get(`/api/products/${productId}`);
-//       console.log(response, "product response");
-//       if ($api.isSuccessful(response)) {
-//         setProductItems(response.data.data || []);
-//       } else {
-//         setError("Failed to fetch products");
-//       }
-//     } catch (error) {
-//       setError(error.toString());
-//     } finally {
-//       setLoading(false);
-//     }
-//   }, [productId]);
-
-//   useEffect(() => {
-//     fetchProductDetails();
-//   }, [fetchProductDetails]);
-
-//   return { productItems, loading, error };
-// };
+  useEffect(() => {
+    const fetchProductById = async () => {
+      if (!productId) return;
+      try {
+        const res = await $api.fetch(`/api/products/${productId}`);
+        console.log(res);
+        if ($api.isSuccessful(res)) {
+          setProductItems(res.data.data);
+          console.log(res.data.data);
+        }
+      } catch (error) {
+        setError(error.message || "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (productId) {
+      fetchProductById();
+    }
+  }, [productId]);
+  return { productItems, loading, error };
+};

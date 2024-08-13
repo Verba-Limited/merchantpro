@@ -1,5 +1,4 @@
 import { format, isFuture, isToday, parseISO } from "date-fns";
-import { useEffect } from "react";
 
 const getDaySuffix = (day) => {
   if (day >= 11 && day <= 13) {
@@ -88,7 +87,7 @@ export const formatDateProfile = (dateString) => {
   return `USER SINCE ${months[monthIndex]}, ${year}`;
 };
 
-const formatTime = (date) => {
+export const formatTime = (date) => {
   let hours = date.getHours();
   const minutes = date.getMinutes();
   const period = hours >= 12 ? "PM" : "AM";
