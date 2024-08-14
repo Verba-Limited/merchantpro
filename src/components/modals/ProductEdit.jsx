@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Assets from "../../constants/Assets";
 import { priceDesc } from "../../data";
+import { dateFormat } from "../../helpers/formatDate";
 
 export default function ProductEdit({ productData, onClose, onUpdate }) {
   const [formData, setFormData] = useState(productData);
@@ -70,7 +71,7 @@ export default function ProductEdit({ productData, onClose, onUpdate }) {
               <div className="mb-3 w-full md:w-1/2">
                 <label className="flex items-center text-[15px] font-normal text-black">
                   NAFDAC NO:{" "}
-                  <span className="inline-block px-2 py-1 ml-2 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
+                  <span className="inline-block px-2 py-1 ml-2 text-xs font-semibold text-[#4d9a1d] bg-green-100 rounded-full">
                     Verified
                   </span>
                 </label>
@@ -94,14 +95,18 @@ export default function ProductEdit({ productData, onClose, onUpdate }) {
                   placeholder="8/10/2012"
                   aria-label="expiryDate"
                   name="expiryDate"
-                  value={formData.expiryDate || ""}
+                  value={
+                    formData.expiryDate
+                      ? dateFormat(formData.expiryDate)
+                      : "" || ""
+                  }
                   onChange={handleInputChange}
                 />
               </div>
             </div>
             <div className="mb-3 w-full">
               <label className="text-[15px] font-normal text-black">
-                Product Description
+                Details
               </label>
               <input
                 type="text"
@@ -119,20 +124,55 @@ export default function ProductEdit({ productData, onClose, onUpdate }) {
                 <img src={formData.coverPicture || Assets.cover} alt="" />
               </div>
             </div>
-            <div className="flex flex-wrap justify-between mb-3">
-              {priceDesc.map((item, index) => (
-                <div key={index} className="mb-3 w-full md:w-1/2 space-y-3">
-                  <h1 className="text-[#2B2B2B] text-[14px] font-medium">
-                    {item.title}
-                  </h1>
-                  <div className="flex space-x-3 border-2 border-gray-300 px-4 py-2">
-                    <div className="flex space-x-3">
-                      <img src={item.img} alt="" width={23} height={20} />
-                      <span>{item.price}</span>
-                    </div>
-                  </div>
+            <div className="flex flex-col md:flex-row space-x-7 mb-3">
+              <div className="mb-3 w-full md:basis-1/2 space-y-3">
+                <h1 className="text-[#2B2B2B] text-[14px] font-medium">
+                  AVAL QTY
+                </h1>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full pl-14 border-2 border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    placeholder="1000"
+                    value={formData.quantity || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, quantity: e.target.value })
+                    }
+                  />
                 </div>
-              ))}
+              </div>
+              <div className="mb-3 w-full md:basis-1/2 space-y-3">
+                <h1 className="text-[#2B2B2B] text-[14px] font-medium">
+                  Price per Unit
+                </h1>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full pl-14 border-2 border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    placeholder="1000"
+                    value={formData.price || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, price: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="mb-3 w-full md:basis-1/2 space-y-3">
+                <h1 className="text-[#2B2B2B] text-[14px] font-medium">
+                  Total price
+                </h1>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full pl-14 border-2 border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    placeholder="1000"
+                    value={formData.price || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, price: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
             </div>
             <div className="flex justify-between items-center mb-3">
               <div className="flex space-x-3 items-center">
