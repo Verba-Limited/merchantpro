@@ -170,7 +170,6 @@ export const useProductDetails = (productId) => {
         console.log(res);
         if ($api.isSuccessful(res)) {
           setProductItems(res.data.data);
-          console.log(res.data.data);
         }
       } catch (error) {
         setError(error.message || "Something went wrong");
