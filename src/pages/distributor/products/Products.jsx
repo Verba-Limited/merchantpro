@@ -28,6 +28,8 @@ export default function Products() {
   const [selectedProductData, setSelectedProductData] = useState(null);
   const user = useSelector((state) => state.auth.user);
 
+  console.log(products);
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -95,7 +97,7 @@ export default function Products() {
 
         <div className="md:flex p-2 md:p-4  md:space-x-44 max-[450px]:space-y-4 mt-3">
           <h1 className="text-[#234A75] md:text-[36px] text-2xl  font-medium max-[450px]:mt-5">
-            {user.businessInfo.businessName}
+            Emzor pharmaceutical
           </h1>
           <div className="flex space-x-10 items-center mr-24">
             <div className="flex space-x-3 items-center">
