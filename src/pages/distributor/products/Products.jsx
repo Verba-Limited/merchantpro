@@ -10,7 +10,10 @@ import {
 } from "@mui/material";
 import Assets from "../../../constants/Assets";
 import { useNavigate } from "react-router-dom";
-import { useFetchProducts } from "../../../components/hooks/distributorCustomHooks";
+import {
+  useDeleteProductDetails,
+  useFetchProducts,
+} from "../../../components/hooks/distributorCustomHooks";
 import ProductLoader from "../../../components/loaders/cards/ProductLoader";
 import { formatDate } from "../../../helpers/formatDate";
 import Spinner from "../../../components/loaders/spinners/Spinner";
@@ -18,6 +21,8 @@ import ProductEdit from "../../../components/modals/ProductEdit";
 import { $api } from "../../../services";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { THREE_DOTS } from "../../../constants/icons/Icons";
+import DeleteProduct from "../../../components/modals/deleteProduct";
 
 export default function Products() {
   const navigate = useNavigate();
@@ -27,8 +32,8 @@ export default function Products() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedProductData, setSelectedProductData] = useState(null);
   const user = useSelector((state) => state.auth.user);
-
-  console.log(products);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -64,6 +69,17 @@ export default function Products() {
     setSelectedProductData(null);
   };
 
+  // Handle delete modal
+  const handleOpenDeleteModal = (product) => {
+    setProductToDelete(product);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setProductToDelete(null);
+    setIsDeleteModalOpen(false);
+  };
+
   const handleUpdateProduct = async (updatedProduct) => {
     try {
       await $api.update(`/api/products/${updatedProduct._id}`, updatedProduct);
@@ -81,6 +97,17 @@ export default function Products() {
 
   return (
     <>
+      {isDeleteModalOpen && (
+        <DeleteProduct
+          productId={productToDelete._id}
+          onClose={handleCloseDeleteModal}
+          onDelete={(productId) => {
+            setProducts((prevProducts) =>
+              prevProducts.filter((product) => product._id !== productId)
+            );
+          }}
+        />
+      )}
       <div className="md:container mt-4 md:p-4">
         <div style={myStyle} className="">
           <div className="">
@@ -204,9 +231,11 @@ export default function Products() {
                     <div className="bg-white shadow rounded-lg w-[80%] mx-auto p-4">
                       <div className="flex justify-between items-start mb-4">
                         <div>
-                          <h1 className="text-black font-semibold text-lg">
-                            {product.productName}
-                          </h1>
+                          <div className="flex justify-between items-center">
+                            <h1 className="text-black font-semibold text-lg">
+                              {product.productName}
+                            </h1>
+                          </div>
                           <p className="text-sm font-normal text-gray-900">
                             {formatDate(product.createdDate)}
                           </p>
@@ -230,6 +259,13 @@ export default function Products() {
                             />
                           </svg>
                         </button>
+
+                        <div
+                          className="cursor-pointer"
+                          onClick={() => handleOpenDeleteModal(product)}
+                        >
+                          <THREE_DOTS />
+                        </div>
                       </div>
                       <div className="mb-4 space-y-5">
                         <p className="text-gray-500 text-sm">
@@ -265,7 +301,7 @@ export default function Products() {
               )}
             </div>
 
-            <div className="flex justify-end items-center py-2">
+            <div className="flex justify-center items-center py-2">
               <button className="text-gray-500 hover:text-gray-700">
                 Previous
               </button>
