@@ -99,6 +99,18 @@ class ServiceApi {
   }
 
   // Method to handle DELETE requests
+  // async delete(url) {
+  //   try {
+  //     const response = await axiosClient.delete(
+  //       this.appendToURL(url),
+  //       this.setupHeaders()
+  //     );
+  //     return response;
+  //   } catch (err) {
+  //     return err;
+  //   }
+  // }
+
   async delete(url) {
     try {
       const response = await axiosClient.delete(
@@ -107,6 +119,7 @@ class ServiceApi {
       );
       return response;
     } catch (err) {
+      console.error("Error in DELETE request:", err.response || err.message);
       return err;
     }
   }

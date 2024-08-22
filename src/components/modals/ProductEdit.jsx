@@ -185,17 +185,6 @@ export default function ProductEdit({ productData, onClose, onUpdate }) {
                 Available
               </p>
             </div>
-            {/* <div className="mb-3 space-y-3 w-full">
-              <h1 className="text-[#2B2B2B] text-[14px] font-medium">
-                Payment Plan
-              </h1>
-              <div className="flex items-center space-x-3 border-2 border-gray-300 px-4 py-2">
-                <p>Start Date</p>
-                <img src={Assets.divide} alt="" />
-                <p>End Date</p>
-                <img src={Assets.date} alt="" />
-              </div>
-            </div> */}
             <div className="flex justify-end">
               <button
                 onClick={handleUpdate}

@@ -183,3 +183,43 @@ export const useProductDetails = (productId) => {
   }, [productId]);
   return { productItems, loading, error };
 };
+
+export const useDeleteProductDetails = (deletedProductId) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const user = useSelector((state) => state.auth.user);
+  const userEmail = user ? user.email : "Email Null";
+
+  console.log(userEmail);
+  console.log(deletedProductId);
+
+  const deletedProductById = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await $api.delete(
+        `/api/products/${userEmail}/${deletedProductId}`
+      );
+      if ($api.isSuccessful(response)) {
+        toast.success("Product successfully deleted!");
+        return response.data.data;
+      } else {
+        throw new Error(
+          response.data.message || "Failed to delete the product."
+        );
+      }
+    } catch (error) {
+      // Check if error.message is defined before accessing it
+      const errorMsg =
+        error.response?.data.data?.message ||
+        error.message ||
+        "An error occurred while deleting the product.";
+      setErrorMessage(errorMsg);
+      toast.error(`Error deleting product: ${errorMsg}`);
+      throw new Error(errorMsg); // Re-throw error to handle it in the component
+    } finally {
+      setIsLoading(false);
+    }
+  }, [deletedProductId, userEmail]);
+
+  return { deletedProductById, isLoading, errorMessage };
+};
